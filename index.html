@@ -384,11 +384,12 @@ border-radius: 50px ;
 }
 
 .circle {
-  margin-bottom: 25px;
+  margin-bottom: 20px !important ;
   background-color: #8e44ad;
   border-radius: 50%;
   width: 100%;
   aspect-ratio: 1 / 1;
+  margin-top: 20px;
 }
 
 #section268 {
@@ -757,36 +758,6 @@ margin-top: 20px;
 
 
 
- .wrapper3456 {
-      display: grid;
-      gap: 30px;
-      max-width: 1000px;
-      width: 90vw;
-      grid-template-columns: repeat(6, 1fr);
-      margin: 0 auto;
-      justify-content: center; /* keeps the grid centered */
-      
-    }
-    .circle {
-      background-color: #8e44ad;
-      border-radius: 0;
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      margin-bottom: 0;
-    }
-    @media (min-width: 800px) {
-      .wrapper3456 {
-        grid-template-columns: repeat(12, 60px);
-        width: auto;
-      }
-    }
-
-
-.spacer783{
-
-    
-    margin-bottom: 30px;
-}
 
 
 
@@ -799,6 +770,7 @@ margin-top: 20px;
             grid-template-columns: repeat(10, 1fr);
             margin: 0 auto;
             justify-content: center;
+        margin-bottom: 25px;
         }
         .circle4563 {
             background-color: #8e44ad;
@@ -843,6 +815,40 @@ margin-top: 20px;
     width: 100%;
     background-color: #0D4715;
   }
+
+
+
+.wrapper3456 {
+      display: grid;
+      gap: 25px;
+      max-width: 1000px;
+      width: 90vw;
+      grid-template-columns: repeat(6, 1fr);
+      margin: 0 auto;
+      justify-content: center; /* keeps the grid centered */
+    }
+    .circle {
+      background-color: #8e44ad;
+      border-radius: 0;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      margin-bottom: 40px;
+    }
+    /* Changed from 800px to 500px */
+    @media (min-width: 500px) {
+      .wrapper3456 {
+        grid-template-columns: repeat(12, 60px);
+        width: auto;
+        gap: 40px !important;
+      }
+    }
+
+    
+
+
+
+
+
 
 
 
@@ -1028,10 +1034,10 @@ Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales
 
 
 
-<div class="spacer783"></div>
+
+
 
 <div class="wrapper3456"></div>
-
 
 
 
@@ -1039,7 +1045,7 @@ Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales
 <h1 
 
 id="section268"
-style="margin-top: 40px;"
+
 >
 Titulo 2 
 </h1>
@@ -1254,42 +1260,7 @@ for (let i = 0; i < 40; i++) {
 
 
 
-<script>
-  const wrapper4354 = document.querySelector('.wrapper3456');
-  let squaresCount = 0;
 
-  function createSquares(count) {
-    wrapper4354.innerHTML = ''; // Clear existing squares
-    squaresCount = count;
-    for (let i = 0; i < count; i++) {
-      const square = document.createElement('div');
-      square.classList.add('circle');
-      wrapper4354.appendChild(square);
-
-      gsap.to(square, {
-        rotation: 360,
-        duration: 8,
-        repeat: -1,
-        ease: "linear"
-      });
-    }
-  }
-
-  function updateSquares() {
-    const screenWidth = window.innerWidth;
-    if (screenWidth >= 800 && squaresCount !== 12) {
-      createSquares(12);
-    } else if (screenWidth < 800 && squaresCount !== 18) {
-      createSquares(18);
-    }
-  }
-
-  // Initialize squares based on initial screen size
-  updateSquares();
-
-  // Update squares when window is resized
-  window.addEventListener('resize', updateSquares);
-</script>
 
 
 
@@ -1376,7 +1347,7 @@ for (let i = 0; i < 40; i++) {
   function jitterVelocity(signX = 1, signY = 1) {
     const speed = ball.speed;
     let angle = Math.atan2(ball.vy, ball.vx);
-    angle += rand(-0.5, 0.5);
+    angle += rand(-0.21, 0.21);
     ball.vx = Math.cos(angle) * speed * signX;
     ball.vy = Math.sin(angle) * speed * signY;
   }
@@ -1434,7 +1405,43 @@ for (let i = 0; i < 40; i++) {
 })();
 </script>
 
+<script>
+  const wrapper4354 = document.querySelector('.wrapper3456');
+  let squaresCount = 0;
+
+  function createSquares(count) {
+    wrapper4354.innerHTML = ''; // Clear existing squares
+    squaresCount = count;
+    for (let i = 0; i < count; i++) {
+      const square = document.createElement('div');
+      square.classList.add('circle');
+      wrapper4354.appendChild(square);
+
+      gsap.to(square, {
+        rotation: 360,
+        duration: 8,
+        repeat: -1,
+        ease: "linear"
+      });
+    }
+  }
+
+  function updateSquares() {
+    const screenWidth = window.innerWidth;
+    // Changed from 800 to 500 here too
+    if (screenWidth >= 500 && squaresCount !== 12) {
+      createSquares(12);
+    } else if (screenWidth < 500 && squaresCount !== 18) {
+      createSquares(18);
+    }
+  }
+
+  // Initialize squares based on initial screen size
+  updateSquares();
+
+  // Update squares when window is resized
+  window.addEventListener('resize', updateSquares);
+</script>
 
 </body>
 </html>
-

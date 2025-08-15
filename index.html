@@ -1376,7 +1376,7 @@ for (let i = 0; i < 40; i++) {
   function jitterVelocity(signX = 1, signY = 1) {
     const speed = ball.speed;
     let angle = Math.atan2(ball.vy, ball.vx);
-    angle += rand(-0.21, 0.21);
+    angle += rand(-0.5, 0.5);
     ball.vx = Math.cos(angle) * speed * signX;
     ball.vy = Math.sin(angle) * speed * signY;
   }
@@ -1437,3 +1437,4 @@ for (let i = 0; i < 40; i++) {
 
 </body>
 </html>
+

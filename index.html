@@ -383,15 +383,7 @@ border-radius: 50px ;
 
 }
 
-.circle {
-  margin-bottom: 20px !important ;
-  background-color: #58A0C8 !important;
-  border-radius: 50%;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  margin-top: 20px;
-border:2px solid black;
-}
+
 
 #section268 {
   font-weight: bold;
@@ -400,6 +392,7 @@ border:2px solid black;
   margin-bottom: 0px;
   margin-left: 40px;
   font-family: "Merriweather";
+  margin-top: 35px;
 }
 
 
@@ -721,7 +714,7 @@ text-align: justify;
   text-justify: inter-word;
 margin-right: 40px;
 font-family: "Merriweather";
-margin-bottom: 40px;
+margin-bottom: 10px !important;
 }
 
 
@@ -819,7 +812,10 @@ margin-top: 20px;
 
 
 
- .wrapper3456 {
+
+
+    
+.wrapper3456 {
       display: grid;
       gap: 10px 30px; /* 10px vertical, 30px horizontal */
       max-width: 1000px;
@@ -827,15 +823,16 @@ margin-top: 20px;
       grid-template-columns: repeat(6, 1fr);
       margin: 0 auto;
       justify-content: center; /* keeps the grid centered */
-      
+      margin-top: 15px;
     }
-    .circle {
-      background-color: #FF2DD1;
+    .circle7869 {
+      background-color: #57B4BA;
       border-radius: 0;
       width: 100%;
       aspect-ratio: 1 / 1;
       margin-bottom: 0;
-      margin-top: -5px ;
+      margin-top: 15px ;
+     border:2px solid black;
     }
     @media (min-width: 500px) {
       .wrapper3456 {
@@ -844,8 +841,6 @@ margin-top: 20px;
         gap: 45px;
       }
     }
-
-    
 
 
 
@@ -1408,7 +1403,6 @@ for (let i = 0; i < 40; i++) {
 </script>
 
 
-
 <script>
   const wrapper4354 = document.querySelector('.wrapper3456');
   let squaresCount = 0;
@@ -1418,7 +1412,7 @@ for (let i = 0; i < 40; i++) {
     squaresCount = count;
     for (let i = 0; i < count; i++) {
       const square = document.createElement('div');
-      square.classList.add('circle');
+      square.classList.add('circle7869');
       wrapper4354.appendChild(square);
 
       gsap.to(square, {
@@ -1445,6 +1439,7 @@ for (let i = 0; i < 40; i++) {
   // Update squares when window is resized
   window.addEventListener('resize', updateSquares);
 </script>
+
 
 </body>
 </html>

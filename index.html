@@ -781,36 +781,6 @@ margin-top: 20px;
 
 
 
-:root {
-    --rect-height-ratio: 0.8; /* default rectangle height ratio */
-  }
-
-  @media (max-width: 700px) {
-    :root {
-      --rect-height-ratio: 0.5; /* smaller rectangle height on small screens */
-    }
-  }
-
-  html, body { 
-    margin: 0; 
-    height: 100%;
-  }
-
-  canvas { 
-    max-width: 800px;
-    display: inline-block; /* required for text-align centering */
-    width: 90vw;
-    height: 60vh;
-    vertical-align: middle; /* optional */
-  }
-
-  .canvas-wrapper {
-    text-align: center; /* centers canvas horizontally */
-    width: 100%;
-    background-color: #0D4715;
-  }
-
-
 
 
 .wrapper3456 {
@@ -843,6 +813,42 @@ margin-top: 20px;
         gap: 30px;
       }
     }
+
+
+
+:root {
+    --rect-height-ratio: 0.8; /* default rectangle height ratio */
+  }
+
+  @media (max-width: 700px) {
+    :root {
+      --rect-height-ratio: 0.5; /* smaller rectangle height on small screens */
+    }
+  }
+
+  html, body { 
+    margin: 0; 
+    height: 100%;
+  }
+
+  canvas { 
+    max-width: 800px;
+    display: inline-block; /* required for text-align centering */
+    width: 90vw;
+    height: 60vh;
+    vertical-align: middle; /* optional */
+  }
+
+  .canvas-wrapper567 {
+    text-align: center; /* centers canvas horizontally */
+    width: 100%;
+   
+    background: linear-gradient(135deg, #0D4715, #0A4D68);
+  
+  
+  
+  
+  }
 
 
 
@@ -1074,7 +1080,7 @@ Al contrario del pensamiento popular, el texto de Lorem Ipsum no es simplemente 
 
 
 
-<div class="canvas-wrapper">
+<div class="canvas-wrapper567">
   <canvas id="c"></canvas>
 </div>
 
@@ -1300,106 +1306,7 @@ for (let i = 0; i < 40; i++) {
     }
 </script>
 
-<script>
-(() => {
-  const canvas = document.getElementById('c');
-  const ctx = canvas.getContext('2d');
 
-  const ball = { r: 24, speed: 240, x: 0, y: 0, vx: 0, vy: 0 };
-  const rect = { x: 0, y: 0, w: 0, h: 0 };
-
-  const rand = (min, max) => Math.random() * (max - min) + min;
-
-  function resize() {
-    const dpr = window.devicePixelRatio || 1;
-    const cssW = canvas.clientWidth;
-    const cssH = canvas.clientHeight;
-    canvas.width = cssW * dpr;
-    canvas.height = cssH * dpr;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-    // Get rectangle height ratio from CSS variable
-    const rectHeightRatio = parseFloat(getComputedStyle(document.documentElement)
-                                       .getPropertyValue('--rect-height-ratio'));
-
-    rect.w = cssW * 0.8;
-    rect.h = cssH * rectHeightRatio;
-    rect.x = (cssW - rect.w) / 2;
-    rect.y = (cssH - rect.h) / 2;
-
-    // Keep ball inside rectangle
-    ball.x = Math.min(Math.max(ball.x, rect.x + ball.r), rect.x + rect.w - ball.r);
-    ball.y = Math.min(Math.max(ball.y, rect.y + ball.r), rect.y + rect.h - ball.r);
-  }
-
-  function initBall() {
-    ball.x = rand(rect.x + ball.r, rect.x + rect.w - ball.r);
-    ball.y = rand(rect.y + ball.r, rect.y + rect.h - ball.r);
-    const angle = rand(0, Math.PI * 2);
-    ball.vx = Math.cos(angle) * ball.speed;
-    ball.vy = Math.sin(angle) * ball.speed;
-  }
-
-  function jitterVelocity(signX = 1, signY = 1) {
-    const speed = ball.speed;
-    let angle = Math.atan2(ball.vy, ball.vx);
-    angle += rand(-0.21, 0.21);
-    ball.vx = Math.cos(angle) * speed * signX;
-    ball.vy = Math.sin(angle) * speed * signY;
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Draw rectangle background
-    ctx.fillStyle = '#626F47';
-    ctx.fillRect(rect.x, rect.y, rect.w, rect.h);
-
-    // Draw rectangle border
-    ctx.lineWidth = 3;
-    ctx.strokeStyle = 'black';
-    ctx.strokeRect(rect.x, rect.y, rect.w, rect.h);
-
-    // Draw ball
-    ctx.beginPath();
-    ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI * 2);
-    ctx.fillStyle = '#F26B0F';
-    ctx.fill();
-    ctx.strokeStyle = '#F26B0F';
-    ctx.stroke();
-  }
-
-  let lastT = performance.now();
-  function tick(now) {
-    const dt = Math.min((now - lastT) / 1000, 0.05);
-    lastT = now;
-
-    ball.x += ball.vx * dt;
-    ball.y += ball.vy * dt;
-
-    let hitX = false, hitY = false;
-
-    if (ball.x - ball.r <= rect.x) { ball.x = rect.x + ball.r; hitX = true; }
-    else if (ball.x + ball.r >= rect.x + rect.w) { ball.x = rect.x + rect.w - ball.r; hitX = true; }
-
-    if (ball.y - ball.r <= rect.y) { ball.y = rect.y + ball.r; hitY = true; }
-    else if (ball.y + ball.r >= rect.y + rect.h) { ball.y = rect.y + rect.h - ball.r; hitY = true; }
-
-    if (hitX && hitY) jitterVelocity(-1, -1);
-    else if (hitX) jitterVelocity(-1, 1);
-    else if (hitY) jitterVelocity(1, -1);
-
-    draw();
-    requestAnimationFrame(tick);
-  }
-
-  window.addEventListener('resize', resize);
-
-  resize();
-  initBall();
-  requestAnimationFrame(tick);
-})();
-</script>
 
 
 
@@ -1524,6 +1431,145 @@ window.addEventListener('resize', updateStars);
 
 
 
+
+
+
+
+
+<script>
+(() => {
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d');
+
+  const ball = { r: 24, speed: 240, x: 0, y: 0, vx: 0, vy: 0 };
+  const rect = { x: 0, y: 0, w: 0, h: 0 };
+
+  const rand = (min, max) => Math.random() * (max - min) + min;
+
+  function resize() {
+    const dpr = window.devicePixelRatio || 1;
+    const cssW = canvas.clientWidth;
+    const cssH = canvas.clientHeight;
+    canvas.width = cssW * dpr;
+    canvas.height = cssH * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    // Get rectangle height ratio from CSS variable
+    const rectHeightRatio = parseFloat(getComputedStyle(document.documentElement)
+                                       .getPropertyValue('--rect-height-ratio'));
+
+    rect.w = cssW * 0.8;
+    rect.h = cssH * rectHeightRatio;
+    rect.x = (cssW - rect.w) / 2;
+    rect.y = (cssH - rect.h) / 2;
+
+    // Keep ball inside rectangle
+    ball.x = Math.min(Math.max(ball.x, rect.x + ball.r), rect.x + rect.w - ball.r);
+    ball.y = Math.min(Math.max(ball.y, rect.y + ball.r), rect.y + rect.h - ball.r);
+  }
+
+  function initBall() {
+    ball.x = rand(rect.x + ball.r, rect.x + rect.w - ball.r);
+    ball.y = rand(rect.y + ball.r, rect.y + rect.h - ball.r);
+    const angle = rand(0, Math.PI * 2);
+    ball.vx = Math.cos(angle) * ball.speed;
+    ball.vy = Math.sin(angle) * ball.speed;
+  }
+
+  function jitterVelocity(signX = 1, signY = 1) {
+    const speed = ball.speed;
+    let angle = Math.atan2(ball.vy, ball.vx);
+    angle += rand(-0.5, 0.5);
+    ball.vx = Math.cos(angle) * speed * signX;
+    ball.vy = Math.sin(angle) * speed * signY;
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw rectangle background
+    ctx.fillStyle = '#626F47';
+    ctx.fillRect(rect.x, rect.y, rect.w, rect.h);
+
+    // Draw rectangle border
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = 'black';
+    ctx.strokeRect(rect.x, rect.y, rect.w, rect.h);
+
+    // Draw ball
+    ctx.beginPath();
+    ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI * 2);
+    ctx.fillStyle = '#F26B0F';
+    ctx.fill();
+    ctx.strokeStyle = '#F26B0F';
+    ctx.stroke();
+  }
+
+  let lastT = performance.now();
+  function tick(now) {
+    const dt = Math.min((now - lastT) / 1000, 0.05);
+    lastT = now;
+
+    ball.x += ball.vx * dt;
+    ball.y += ball.vy * dt;
+
+    let hitX = false, hitY = false;
+
+    if (ball.x - ball.r <= rect.x) { ball.x = rect.x + ball.r; hitX = true; }
+    else if (ball.x + ball.r >= rect.x + rect.w) { ball.x = rect.x + rect.w - ball.r; hitX = true; }
+
+    if (ball.y - ball.r <= rect.y) { ball.y = rect.y + ball.r; hitY = true; }
+    else if (ball.y + ball.r >= rect.y + rect.h) { ball.y = rect.y + rect.h - ball.r; hitY = true; }
+
+    if (hitX && hitY) jitterVelocity(-1, -1);
+    else if (hitX) jitterVelocity(-1, 1);
+    else if (hitY) jitterVelocity(1, -1);
+
+    draw();
+    requestAnimationFrame(tick);
+  }
+
+  window.addEventListener('resize', resize);
+
+  resize();
+  initBall();
+  requestAnimationFrame(tick);
+})();
+</script>
+
+
+
+<script>
+const wrapper8472 = document.querySelector('.canvas-wrapper567');
+let hue = 120; // starting hue
+let hue2 = 200; // second color hue
+
+function animateBackground() {
+  // increment hues
+  hue = (hue + 0.36) % 360;
+  hue2 = (hue2 + 0.36) % 360;
+
+  // apply gradient with HSL for smooth transitions
+  wrapper8472.style.background = `linear-gradient(135deg, hsl(${hue}, 70%, 25%), hsl(${hue2}, 70%, 35%))`;
+
+  requestAnimationFrame(animateBackground);
+}
+
+animateBackground();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>
 
+why background color animation is not working

@@ -842,8 +842,7 @@ root {
     text-align: center; /* centers canvas horizontally */
     width: 100%;
    
-    background: linear-gradient(135deg, #0D4715, #0A4D68);
-  
+    
   
   
   
@@ -876,11 +875,13 @@ root {
   .canvas-wrapper567 {
     text-align: center; /* centers canvas horizontally */
     width: 100%;
-    
+     
+     background: #154D71;
+    transition: background 1s linear ;
+  
+  
   
   }
-
-
 
 
 
@@ -1109,11 +1110,9 @@ Al contrario del pensamiento popular, el texto de Lorem Ipsum no es simplemente 
   </p>
 
 
-
-<div class="canvas-wrapper567">
+<div class="canvas-wrapper567" id="canvas-wrapper898">
   <canvas id="c"></canvas>
 </div>
-
 
 
 <h1 
@@ -1566,35 +1565,22 @@ window.addEventListener('resize', updateStars);
 
 
 
+
+
+
 <script>
-const wrapper2345 = document.querySelector('.canvas-wrapper567');
+const colors = ['#253900', '#4DFFBE', '#154D71']; // hex colors
+let index = 0;
+const div = document.getElementById('canvas-wrapper898');
 
-// HSL hue values for blue and green
-const minHue = 180; // blue
-const maxHue = 120; // green
-let hue = minHue;
-let direction = -1; // -1 = decreasing hue, 1 = increasing hue
-
-function animateBackground() {
-  // Move hue smoothly
-  hue += 0.2 * direction; // smaller number = slower transition
-
-  // Reverse direction at min/max
-  if (hue <= maxHue) direction = 1;
-  if (hue >= minHue) direction = -1;
-
-  // Apply gradient
-  wrapper2345.style.background = `linear-gradient(135deg, hsl(${hue}, 70%, 50%), hsl(${hue + 40}, 70%, 50%))`;
-
-  requestAnimationFrame(animateBackground);
+function changeColor() {
+  index = (index + 1) % colors.length;
+  div.style.background = colors[index];
 }
 
-animateBackground();
+// Change color every 2 seconds
+setInterval(changeColor, 5000);
 </script>
-
-
-
-
 
 
 
@@ -1608,4 +1594,4 @@ animateBackground();
 </body>
 </html>
 
-
+why background color animation is not working

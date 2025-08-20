@@ -243,6 +243,8 @@ font-family: "Merriweather";
 padding-top: 20px;
 padding-bottom: 20px;
 
+overflow-x: hidden; /* hides horizontal scroll */
+
 }
 
 
@@ -365,10 +367,11 @@ body {
 
 
 body, html {
-  overflow-x: hidden;
+   
 }
 
-
+how to make  overflow-x: hidden dont affect 
+smooth scroll  link 
 
 
 .wrapper {
@@ -580,20 +583,7 @@ text-justify: inter-word;
 }
 
 
-.custom-link854{
-   display: inline-block;
-border: solid; 
-font-size: 16px !important;
 
-padding: 10px 10px;
-background-color: #578FCA;
-text-decoration: none; /* optional: removes underline */
-margin-top: 20px;
- /* or any spacing you like */
-margin-left: 15px !important;
-font-family: "Dosis", sans-serif;
-width: 100px !important;
-}
 
 
 
@@ -647,39 +637,7 @@ text-justify: inter-word !important;
 
 }
 
-.custom-link854{
-  margin-left: 40px;
-  display: flex;
-border: solid; 
-font-size: 16px !important;
-justify-content: center !important;
-padding: 10px 10px;
-background-color: #578FCA;
-text-decoration: none; /* optional: removes underline */
-margin-top: 20px;
-font-family: dosis;
 
-
-  
-
-
-}
-
-.custom-link897{
-  
-  display: inline-block;
-border: solid; 
-font-size: 16px;
-
-padding: 10px 10px;
-background-color: #578FCA;
-text-decoration: none; /* optional: removes underline */
-margin-top: 20px;
-
-
-margin-left: 15px !important;
-
-}
 
 .custom-link242
 
@@ -950,7 +908,7 @@ root {
   margin-top: 40px;     /* adjust vertical spacing */
   display: block;
   width: fit-content;   /* shrink to fit the clock */
-  margin-bottom: 50px !important;
+  
 }
 
 
@@ -963,9 +921,22 @@ width: 120px;
 }
 
 
+.body859839{
 
 
 
+   overflow-x: hidden;
+
+
+
+}
+
+.link73648{
+
+  border: solid;
+
+
+}
 
 
 
@@ -973,7 +944,7 @@ width: 120px;
 </head>
   
 
-
+<div class="body859839"> 
 
 <body>
 
@@ -997,15 +968,12 @@ width: 120px;
   </div>
 </div>
 
-<div class="link-container">
-  <a href="#sectio98374" class="custom-link854">Ir a titulo 1</a>
-  <a href="#section8753" class="custom-link897">Ir a titulo 2</a>
-  <a href="#section3"   class="custom-link242">Ir a titulo 3</a>
+
+<div class="link-wrapper78">       
+<a href="#sectio98374" class="link73648"> ir a titulo 1 </a>
+<a href=""> ir a titulo 2 </a>
+
 </div>
-
-
-
-
 
 
 
@@ -1250,7 +1218,7 @@ $(document).ready(function(){
       // Using jQuery's animate() method to add smooth page scroll
       // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
       $('html, body').animate({
-        scrollTop: $(hash).offset().top
+        scrollTop: $(hash).offset().top 
       }, 800, function(){
    
         // Add hash (#) to URL when done scrolling (default click behavior)
@@ -1829,7 +1797,7 @@ drawHands();
 
 
 
-
+</div>
 
 
 </body>

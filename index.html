@@ -396,7 +396,13 @@ border-radius: 50px ;
 }
 
 
+/* It means “only apply these styles 
+if the screen (viewport) is at least 
+800 pixels wide”.
 
+If the screen is narrower 
+(like on a mobile phone < 800px), 
+these rules are ignored.  */
 
 @media (min-width: 800px) {
   .wrapper {
@@ -586,7 +592,7 @@ margin-top: 20px;
  /* or any spacing you like */
 margin-left: 15px !important;
 font-family: "Dosis", sans-serif;
-
+width: 100px !important;
 }
 
 
@@ -643,10 +649,10 @@ text-justify: inter-word !important;
 
 .custom-link854{
   margin-left: 40px;
-  display: inline-block;
+  display: flex;
 border: solid; 
-font-size: 20px;
-
+font-size: 16px !important;
+justify-content: center !important;
 padding: 10px 10px;
 background-color: #578FCA;
 text-decoration: none; /* optional: removes underline */
@@ -680,8 +686,8 @@ margin-left: 15px !important;
 {
 
  font-family: dosis;
- 
-  display: inline-block;
+ width: 100px;
+  display: flex;
 border: solid; 
 font-size: 16px;
 
@@ -689,7 +695,7 @@ padding: 10px 10px;
 background-color: #578FCA;
 text-decoration: none; /* optional: removes underline */
 margin-top: 20px;
-
+justify-content: center;
 
 margin-left: 15px !important;
 
@@ -765,6 +771,7 @@ margin-top: 20px;
             margin: 0 auto;
             justify-content: center;
         margin-bottom: 25px;
+        
         }
         .circle4563 {
             background-color: #9929EA;
@@ -884,6 +891,89 @@ root {
   }
 
 
+.circle4564 {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      margin: 40px auto;
+      border: 15px solid #E73879;
+      position: relative;
+      background: #f09001;
+      outline: 4px solid #000000;
+      box-shadow: inset 0 0 0 4px #000000;
+      overflow: hidden; /* keep hands inside */
+   left: 10px;
+   
+   
+    }
+
+    #handsCanvas {
+      position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;   /* match orange circle */
+  height: 100%;
+  pointer-events: none; /* let clicks go through */
+    
+*
+
+
+}
+
+    .small-circle {
+      position: absolute;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .hour {
+      width: 10px;
+      height: 10px;
+      background-color: #000000;
+    }
+    .minute {
+      width: 5px;
+      height: 5px;
+      background-color: #000000;
+    }
+
+    .clock-number {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      font-weight: bold;
+      font-size: 30px;
+      color: #000000;
+    }
+
+
+.clock-container {
+  margin: 0 auto;       /* centers horizontally */
+  margin-top: 40px;     /* adjust vertical spacing */
+  display: block;
+  width: fit-content;   /* shrink to fit the clock */
+  margin-bottom: -30px !important;
+}
+
+
+.links-container {
+  display: flex;
+  flex-direction: column; /* stack vertically */
+  gap: 10px;              /* spacing between links */
+width: 120px;
+
+}
+
+
+.link-container {
+  display: flex;
+  flex-direction: column;  /* stack vertically */
+  align-items: center;     /* center horizontally */
+  gap: 10px;               /* space between links */
+  margin: 20px 0;          /* spacing from other content */
+}
+
+
+
+
 
 </style>
 </head>
@@ -892,6 +982,8 @@ root {
 
 
 <body>
+
+
 
 
 
@@ -905,36 +997,20 @@ root {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   
 
-<a href="#section123"
-class="custom-link854"
-style="color: #0B1D51;"
-id="jhnk394"
->
-  Ir a titulo 1
-</a>
+<div class="clock-container">
+  <div class="circle4564" id="clock7384">
+    <canvas id="handsCanvas"></canvas>
+  </div>
+</div>
 
-
-  
-<a href="#section268"
-class="custom-link897"
-style="color: #0B1D51;"
-id="id897"
->
-  Ir a titulo 2
-</a>
+<div class="link-container">
+  <a href="#section123" class="custom-link854">Ir a titulo 1</a>
+  <a href="#section268" class="custom-link897">Ir a titulo 2</a>
+  <a href="#section3"   class="custom-link242">Ir a titulo 3</a>
+</div>
 
 
 
-
-
-
-<a href="#section3"
-class="custom-link242"
-style="color: #0B1D51;"
-id="mkju876"
->
-  Ir a titulo 3
-</a>
 
 
 
@@ -942,14 +1018,11 @@ id="mkju876"
   
 
 
-<h1 class="merriweather-custom135"
-style="font-weight: bold;
-"
->Your product here: </h1>
-<br>
-<br>
 
-<div class="contenedor1"> 
+
+<div class="contenedor1"
+style="margin-top: 10px;"
+> 
 
 
 
@@ -1061,7 +1134,7 @@ Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de te
 <br><br>
 Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
 
-
+</p>
 
  
 
@@ -1586,6 +1659,179 @@ setInterval(changeColor, 5000);
 
 
 
+<script>
+const clock2 = document.getElementById('clock7384');
+const canvas = document.getElementById('handsCanvas');
+const ctx = canvas.getContext('2d');
+
+// Match resolution to container size
+canvas.width  = clock2.clientWidth;
+canvas.height = clock2.clientHeight;
+
+// Border (15px) + outline (4px)
+const borderOffset = 19;
+
+// True center of the orange circle
+const centerX2 = borderOffset + (canvas.width  - borderOffset * 2) / 2;
+const centerY2 = borderOffset + (canvas.height - borderOffset * 2) / 2;
+
+// Inner radius of the orange circle
+const radius2  = (Math.min(canvas.width, canvas.height) - borderOffset * 2) / 2;
+
+// --- dots ---
+for (let i = 0; i < 60; i++) {
+  const angle = (i * 6) * Math.PI / 180;
+  const x = centerX2 + radius2 * Math.sin(angle);
+  const y = centerY2 - radius2 * Math.cos(angle);
+
+  const dot = document.createElement('div');
+  dot.classList.add('small-circle');
+  dot.classList.add(i % 5 === 0 ? 'hour' : 'minute');
+  dot.style.left = `${x}px`;
+  dot.style.top = `${y}px`;
+  clock2.appendChild(dot);
+}
+
+// --- numbers ---
+[
+  { num: '12', angle: 0 },
+  { num: '3',  angle: 90 },
+  { num: '6',  angle: 180 },
+  { num: '9',  angle: 270 }
+].forEach(({ num, angle }) => {
+  const rad = angle * Math.PI / 180;
+  const x = centerX2 + (radius2 - 25) * Math.sin(rad);
+  const y = centerY2 - (radius2 - 25) * Math.cos(rad);
+
+  const numberEl = document.createElement('div');
+  numberEl.classList.add('clock-number');
+  numberEl.textContent = num;
+  numberEl.style.left = `${x}px`;
+  numberEl.style.top = `${y}px`;
+  clock2.appendChild(numberEl);
+});
+
+</script>
+
+
+
+
+
+  
+
+
+<script>
+  
+const clock2 = document.getElementById('clock7384');
+const canvas = document.getElementById('handsCanvas');
+const ctx = canvas.getContext('2d');
+
+// Match canvas to container
+canvas.width  = clock2.offsetWidth;
+canvas.height = clock2.offsetHeight;
+
+// Border + outline thickness (15px border + 4px outline)
+const borderOffset = 19;
+
+// True inner circle center (inside the orange face)
+const centerX2 = borderOffset + (canvas.width  - borderOffset*2) / 2;
+const centerY2 = borderOffset + (canvas.height - borderOffset*2) / 2;
+
+// Usable radius inside face
+const radius2 = (Math.min(canvas.width, canvas.height) - borderOffset*2) / 2;
+
+// --- dots ---
+for (let i = 0; i < 60; i++) {
+  const angle = (i * 6) * Math.PI / 180;
+  const x = centerX2 + radius2 * Math.sin(angle);
+  const y = centerY2 - radius2 * Math.cos(angle);
+
+  const dot = document.createElement('div');
+  dot.classList.add('small-circle');
+  dot.classList.add(i % 5 === 0 ? 'hour' : 'minute');
+  dot.style.left = `${x}px`;
+  dot.style.top = `${y}px`;
+  clock2.appendChild(dot);
+}
+
+// --- numbers ---
+[
+  { num: '12', angle: 0 },
+  { num: '3',  angle: 90 },
+  { num: '6',  angle: 180 },
+  { num: '9',  angle: 270 }
+].forEach(({ num, angle }) => {
+  const rad = angle * Math.PI / 180;
+  const x = centerX2 + (radius2 - 25) * Math.sin(rad);
+  const y = centerY2 - (radius2 - 25) * Math.cos(rad);
+
+  const numberEl = document.createElement('div');
+  numberEl.classList.add('clock-number');
+  numberEl.textContent = num;
+  numberEl.style.left = `${x}px`;
+  numberEl.style.top = `${y}px`;
+  clock2.appendChild(numberEl);
+});
+
+
+
+</script>
+
+
+
+
+<script>
+  // --- draw hands ---
+function drawHands() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const now = new Date();
+  const sec = now.getSeconds();
+  const min = now.getMinutes();
+  const hr  = now.getHours() % 12;
+
+  const secAngle = (Math.PI/30) * sec;
+  const minAngle = (Math.PI/30) * min + secAngle/60;
+  const hrAngle  = (Math.PI/6) * hr + minAngle/12;
+
+  // Hour hand
+  ctx.beginPath();
+  ctx.lineWidth = 6;
+  ctx.lineCap = "round";
+  ctx.moveTo(centerX2, centerY2);
+  ctx.lineTo(centerX2 + Math.sin(hrAngle) * (radius2 * 0.5),
+             centerY2 - Math.cos(hrAngle) * (radius2 * 0.5));
+  ctx.stroke();
+
+  // Minute hand
+  ctx.beginPath();
+  ctx.lineWidth = 4;
+  ctx.moveTo(centerX2, centerY2);
+  ctx.lineTo(centerX2 + Math.sin(minAngle) * (radius2 * 0.75),
+             centerY2 - Math.cos(minAngle) * (radius2 * 0.75));
+  ctx.stroke();
+
+  // Second hand
+  ctx.beginPath();
+  ctx.strokeStyle = "red";
+  ctx.lineWidth = 2;
+  ctx.moveTo(centerX2, centerY2);
+  ctx.lineTo(centerX2 + Math.sin(secAngle) * (radius2 * 0.85),
+             centerY2 - Math.cos(secAngle) * (radius2 * 0.85));
+  ctx.stroke();
+  ctx.strokeStyle = "black";
+
+  // Center pivot dot
+  ctx.beginPath();
+  ctx.fillStyle = "black";
+  ctx.arc(centerX2, centerY2, 4, 0, 2*Math.PI);
+  ctx.fill();
+}
+
+setInterval(drawHands, 1000);
+drawHands();
+</script>
+
+
 
 
 
@@ -1593,6 +1839,3 @@ setInterval(changeColor, 5000);
 
 </body>
 </html>
-
-
-

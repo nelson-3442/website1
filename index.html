@@ -9,6 +9,11 @@
   >
   
 
+<link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Cursive:wght@400..700&display=swap" rel="stylesheet">
+
+
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
@@ -149,7 +154,7 @@ display: flex;
 
 
 
-.titulo1{
+.titulo18794{
   font-weight: bold;
   font-size: 30px;
  display: block;
@@ -237,13 +242,16 @@ font-family: "Merriweather";
 
 
 
-.contenedor1{
+.contenedor49532{
 
   background-color: rgb(46, 231, 9);
 padding-top: 20px;
 padding-bottom: 20px;
 
 overflow-x: hidden; /* hides horizontal scroll */
+margin-top: 20px;
+
+
 
 }
 
@@ -439,7 +447,7 @@ these rules are ignored.  */
   margin-bottom: 10px;
 }
   
-.titulo1{
+.titulo18794{
   font-weight: bold;
   font-size: 30px;
    display: block;
@@ -898,6 +906,8 @@ root {
       font-weight: bold;
       font-size: 30px;
       color: #000000;
+      font-family:  "Edu NSW ACT Cursive", cursive;
+  
     }
 
 
@@ -926,16 +936,34 @@ width: 120px;
 .link73648{
 
   border: solid;
+padding-top: 10px;
+padding-bottom: 10px;
+padding-right: 65px;
+padding-left: 65px;
+background-color: #FFE100;
+color: #1C352D !important;
+margin-top: -10px;
+font-size: 20px;
+font-family: "Merriweather"; 
 
 
 }
+
+
+.link73648:hover {
+    background-color: #D3AF37 !important;  /* bright yellow when hovered */
+  
+  }
+
+
+
 
 
 .link-wrapper78 {
   display: flex;
   flex-direction: column; /* stack vertically */
   align-items: center;    /* optional: center links horizontally */
-  gap: 10px;              /* space between links */
+  gap: 25px ;              /* space between links */
 }
 
 
@@ -989,9 +1017,7 @@ margin-left: 15px;
 
 
 
-<div class="contenedor1"
-style="margin-top: 10px;"
-> 
+<div class="contenedor49532"> 
 
 
 
@@ -1071,7 +1097,7 @@ style="height: 400px;"
 
 <h1  
 id="sectio98374"
-class="titulo1"
+class="titulo18794"
 
 > 
 
@@ -1662,90 +1688,51 @@ for (let i = 0; i < 60; i++) {
   clock2.appendChild(dot);
 }
 
-// --- numbers ---
-[
-  { num: '12', angle: 0 },
-  { num: '3',  angle: 90 },
-  { num: '6',  angle: 180 },
-  { num: '9',  angle: 270 }
-].forEach(({ num, angle }) => {
-  const rad = angle * Math.PI / 180;
-  const x = centerX2 + (radius2 - 25) * Math.sin(rad);
-  const y = centerY2 - (radius2 - 25) * Math.cos(rad);
-
-  const numberEl = document.createElement('div');
-  numberEl.classList.add('clock-number');
-  numberEl.textContent = num;
-  numberEl.style.left = `${x}px`;
-  numberEl.style.top = `${y}px`;
-  clock2.appendChild(numberEl);
-});
-
 </script>
 
 
 
 
-
-  
 
 
 <script>
-  
-const clock2 = document.getElementById('clock7384');
-const canvas = document.getElementById('handsCanvas');
-const ctx = canvas.getContext('2d');
 
-// Match canvas to container
-canvas.width  = clock2.offsetWidth;
-canvas.height = clock2.offsetHeight;
-
-// Border + outline thickness (15px border + 4px outline)
-const borderOffset = 19;
-
-// True inner circle center (inside the orange face)
-const centerX2 = borderOffset + (canvas.width  - borderOffset*2) / 2;
-const centerY2 = borderOffset + (canvas.height - borderOffset*2) / 2;
-
-// Usable radius inside face
-const radius2 = (Math.min(canvas.width, canvas.height) - borderOffset*2) / 2;
-
-// --- dots ---
-for (let i = 0; i < 60; i++) {
-  const angle = (i * 6) * Math.PI / 180;
-  const x = centerX2 + radius2 * Math.sin(angle);
-  const y = centerY2 - radius2 * Math.cos(angle);
-
-  const dot = document.createElement('div');
-  dot.classList.add('small-circle');
-  dot.classList.add(i % 5 === 0 ? 'hour' : 'minute');
-  dot.style.left = `${x}px`;
-  dot.style.top = `${y}px`;
-  clock2.appendChild(dot);
-}
-
-// --- numbers ---
-[
+  // Add 12, 3, 6, 9 numbers
+const numbers = [
   { num: '12', angle: 0 },
-  { num: '3',  angle: 90 },
-  { num: '6',  angle: 180 },
-  { num: '9',  angle: 270 }
-].forEach(({ num, angle }) => {
+  { num: '3', angle: 90 },
+  { num: '6', angle: 180 },
+  { num: '9', angle: 270 },
+];
+
+numbers.forEach(({ num, angle }) => {
   const rad = angle * Math.PI / 180;
-  const x = centerX2 + (radius2 - 25) * Math.sin(rad);
-  const y = centerY2 - (radius2 - 25) * Math.cos(rad);
+
+  // Default inward distance
+  let inward = 25;
+
+  // Add extra spacing ONLY for "12"
+  if (num === "12") {
+    inward = 30; // change this number until spacing looks good
+  }
+
+  const x = centerX2 + (radius2 - inward) * Math.sin(rad);
+  const y = centerY2 - (radius2 - inward) * Math.cos(rad);
 
   const numberEl = document.createElement('div');
   numberEl.classList.add('clock-number');
   numberEl.textContent = num;
   numberEl.style.left = `${x}px`;
   numberEl.style.top = `${y}px`;
+
   clock2.appendChild(numberEl);
 });
 
 
-
 </script>
+
+
+
 
 
 

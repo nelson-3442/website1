@@ -382,7 +382,7 @@ how to make  overflow-x: hidden dont affect
 smooth scroll  link 
 
 
-.wrapper {
+.wrapper4837 {
 border-radius: 50px ;
   display: grid;
   gap: 8px;
@@ -407,23 +407,18 @@ border-radius: 50px ;
 }
 
 
-/* It means “only apply these styles 
-if the screen (viewport) is at least 
-800 pixels wide”.
-
-If the screen is narrower 
-(like on a mobile phone < 800px), 
-these rules are ignored.  */
+/* Apply the CSS inside only if the 
+screen is 800 px wide or larger  */
 
 @media (min-width: 800px) {
-  .wrapper {
+  .wrapper4837 {
     grid-template-columns: repeat(20, 60px);
     justify-content: center;
     width: auto;
     margin: 0 auto; /* ensures centering remains */
   }
  
-   
+
 
 }
 
@@ -745,6 +740,10 @@ margin-top: 20px;
             width: 100%;
             aspect-ratio: 1 / 1;
         }
+
+
+        /* Apply the CSS inside only if the 
+        screen is 800 px wide or larger*/
         @media (min-width: 800px) {
             .wrapper456 {
                 grid-template-columns: repeat(20, 60px);
@@ -945,18 +944,11 @@ color: #1C352D !important;
 margin-top: -10px;
 font-size: 20px;
 font-family: "Merriweather"; 
+text-decoration: none;  /* removes underline */
+transition: background-color 0.4s ease; /* smooth effect */
 
 
 }
-
-
-.link73648:hover {
-    background-color: #D3AF37 !important;  /* bright yellow when hovered */
-  
-  }
-
-
-
 
 
 .link-wrapper78 {
@@ -965,6 +957,15 @@ font-family: "Merriweather";
   align-items: center;    /* optional: center links horizontally */
   gap: 25px ;              /* space between links */
 }
+
+
+/* Hover only for mouse devices */
+  @media (hover: hover) {
+    .link73648:hover {
+      background-color: #D3AF37 !important;
+    }
+  }
+
 
 
 #section8753 {
@@ -1338,13 +1339,13 @@ jQuery(document).ready(function($) {
 
 <script>
 
-const wrapper = document.querySelector('.wrapper');
+const wrapper4837  = document.querySelector('.wrapper4837 ');
 
 // Create 30 animated circles
 for (let i = 0; i < 40; i++) {
   const circle = document.createElement('div');
   circle.classList.add('circle');
-  wrapper.appendChild(circle);
+  wrapper4837.appendChild(circle);
 
   // Animate each circle using GSAP
   gsap.to(circle, {

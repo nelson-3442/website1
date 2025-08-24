@@ -1766,7 +1766,8 @@ function drawHands() {
   const hr  = now.getHours() % 12;
 
   const secAngle = (Math.PI/30) * sec;
-  const minAngle = (Math.PI/30) * min + secAngle/60;
+  const minAngle = (Math.PI/30) * min;
+
   const hrAngle  = (Math.PI/6) * hr + minAngle/12;
 
   // Hour hand
@@ -1782,8 +1783,8 @@ function drawHands() {
   ctx.beginPath();
   ctx.lineWidth = 4;
   ctx.moveTo(centerX2, centerY2);
-  ctx.lineTo(centerX2 + Math.sin(minAngle) * (radius2 * 0.75),
-             centerY2 - Math.cos(minAngle) * (radius2 * 0.75));
+  ctx.lineTo(centerX2 + Math.sin(minAngle) * (radius2 * 0.85),
+             centerY2 - Math.cos(minAngle) * (radius2 * 0.85));
   ctx.stroke();
 
   // Second hand

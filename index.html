@@ -108,7 +108,7 @@ padding-top: 20px;
 padding-bottom: 20px;
 
 overflow-x: hidden; /* hides horizontal scroll */
-margin-top: 20px;
+margin-top: 40px;
 
 
 
@@ -397,22 +397,21 @@ que rebota */
 
 
 .circle4564 {
+
       width: 250px;
       height: 250px;
       border-radius: 50%;
-      margin: 40px auto;
+     
       border: 15px solid #E73879;
       position: relative;
       background: #f09001;
       outline: 4px solid #000000;
       box-shadow: inset 0 0 0 4px #000000;
-      
-   
-   
-   
+    
+    
     }
 
-    #handsCanvas {
+    #canvas7849hnki {
       position: absolute;
   top: 0;
   left: 0;
@@ -498,9 +497,13 @@ font-weight: 800;
 
 .link-wrapper78 {
   display: flex;
-  flex-direction: column; /* stack vertically */
-  align-items: center;    /* optional: center links horizontally */
-  gap: 25px ;              /* space between links */
+  /* stack vertically */
+  flex-direction: column; 
+/* space between links */
+  gap: 25px ;              
+
+ 
+
 }
 
 
@@ -606,7 +609,45 @@ text-justify: inter-word ;
 }
 
 
+.container-all {
+
+  flex-direction: column;
+gap: 50px !important;
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+}
+
+
+
+
+.container-all {
+  display: flex;              /* puts links + clock side by side */
+  align-items: center;        /* centers them vertically */
+  justify-content: center; 
+  height: 100%;               /* must have some height to work */
+gap: 100px;               /* 👈 adds space between links and clock */
+margin-top: 45px;
+
+}
+
 
 
 
@@ -635,18 +676,24 @@ text-justify: inter-word ;
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   
 
-<div class="clock-container">
-  <div class="circle4564" id="clock7384">
-    <canvas id="handsCanvas"></canvas>
+
+
+
+
+<div class="container-all">
+  <div class="link-wrapper78">       
+    <a href="#sectio98374" class="link73648"> ir a titulo 1 </a>
+    <a href="#section8753" class="link73648"> ir a titulo 2 </a>
+    <a href="#section3837" class="link73648"> ir a titulo 3</a>
+  </div>
+
+  <div class="clock-container8783">
+    <div class="circle4564" id="clock7384">
+      <canvas id="canvas7849hnki"></canvas>
+    </div>
   </div>
 </div>
 
-
-<div class="link-wrapper78">       
-<a href="#sectio98374" class="link73648"> ir a titulo 1 </a>
-<a href="#section8753" class="link73648"> ir a titulo 2 </a>
-<a href="#section3837" class="link73648"> ir a titulo 3</a>
-</div>
 
 
 
@@ -1297,7 +1344,7 @@ setInterval(changeColor, 5000);
 
 <script>
 const clock2 = document.getElementById('clock7384');
-const canvas = document.getElementById('handsCanvas');
+const canvas = document.getElementById('canvas7849hnki');
 const ctx = canvas.getContext('2d');
 
 // Match resolution to container size

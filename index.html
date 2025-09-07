@@ -94,7 +94,7 @@ display: flex;
 padding-top: 20px;
 padding-bottom: 20px;
 
-overflow-x: hidden;
+overflow-x: hidden; /* hides horizontal scroll */
 margin-top: 40px;
 
 
@@ -157,7 +157,7 @@ text-decoration: none;
 
 font-weight: 600;
 
-transition: background-color 0.4s ease; 
+transition: background-color 0.4s ease; /* smooth effect */
 
 
 
@@ -187,14 +187,14 @@ transition: background-color 0.4s ease;
 
     .star-path324 {
       stroke: black;
-      stroke-width: 4;
+      stroke-width: 4; /* <-- Change stroke width here */
       stroke-linejoin: round;
       stroke-linecap: round;
     }
 
 
 
-    
+    /*500 pixels wide or larger*/
     @media (min-width: 500px) {
       .wrapper3456 {
         grid-template-columns: repeat(10, 100px) !important;
@@ -211,28 +211,35 @@ transition: background-color 0.4s ease;
 
   canvas { 
     max-width: 800px;
-    display: inline-block; 
+    display: inline-block; /* required for text-align centering */
     width: 90vw;
     height: 60vh;
-    vertical-align: middle; 
+    vertical-align: middle; /* optional */
   }
 
   
+/* esto especifica el tamaño del rectangulo donde esta el circulo
+que rebota */
 :root {
-    --rect-height-ratio: 0.8; 
+    --rect-height-ratio: 0.8; /* default rectangle height ratio */
+  }
 
-}
+
+  /* 700px or smaller */
   @media (max-width: 700px) {
     
+    /* esto especifica el tamaño del rectangulo donde esta el circulo
+que rebota */
     :root {
-      --rect-height-ratio: 0.5;  }
+      --rect-height-ratio: 0.5; /* smaller rectangle height on small screens */
+    }
   }
 
   
   .canvas-wrapper567 {
 
     margin-top: 20px;
-    text-align: center; 
+    text-align: center; /* centers canvas horizontally */
     width: 100%;
      
      background: #154D71;
@@ -262,9 +269,9 @@ transition: background-color 0.4s ease;
       position: absolute;
   top: 0;
   left: 0;
-  width: 100%;   
+  width: 100%;   /* match orange circle */
   height: 100%;
-  pointer-events: none; 
+  pointer-events: none; /* let clicks go through */
     
 
 }
@@ -302,8 +309,8 @@ transition: background-color 0.4s ease;
 
 .links-container {
   display: flex;
-  flex-direction: column; 
-  gap: 10px;            
+  flex-direction: column; /* stack vertically */
+  gap: 10px;              /* spacing between links */
 width: 120px;
 
 }
@@ -331,11 +338,11 @@ color: black !important;
 margin-top: -10px;
 font-size: 25px;
 font-family: "Merriweather"; 
-text-decoration: none; 
-transition: background-color 0.4s ease; 
+text-decoration: none;  /* removes underline */
+transition: background-color 0.4s ease; /* smooth effect */
 border-color: black;
 
--webkit-tap-highlight-color: transparent; 
+-webkit-tap-highlight-color: transparent; /* removes the blue flash */
   text-decoration: none;
   
 font-weight: 800;
@@ -345,9 +352,9 @@ font-weight: 800;
 
 .link-wrapper78 {
   display: flex;
-
+  /* stack vertically */
   flex-direction: column; 
-
+/* space between links */
   gap: 25px ;              
 
  
@@ -365,6 +372,7 @@ font-size: 35px;
     
 }
 
+/*800px wide or smaller.*/
 @media only screen and (max-width: 800px){
 
 
@@ -426,12 +434,12 @@ gap: 40px !important;
 
 
 .container-all {
-  display: flex;   
-  align-items: center;       
+  display: flex;              /* puts links + clock side by side */
+  align-items: center;        /* centers them vertically */
   justify-content: center; 
-  height: 100%;              
-  gap: 100px;              
-  margin-top: 45px;
+  height: 100%;               /* must have some height to work */
+gap: 100px;               /* 👈 adds space between links and clock */
+margin-top: 45px;
 
 }
 
@@ -454,8 +462,8 @@ slider5948hjy {
 
 .slide-item7384jdb {
   width: 100%;
-  aspect-ratio: 16/9;     
-  background-size: cover; 
+  aspect-ratio: 16/9;      /* keeps a 16:9 proportion */
+  background-size: cover;  /* image fills box */
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -543,8 +551,8 @@ slider5948hjy {
 .container78478{
 
 
-max-width: 800px;   
-  margin: 0 auto;    
+max-width: 800px;   /* 👈 set your maximum width */
+  margin: 0 auto;      /* 👈 keeps it centered */
   width: 100%; 
 
 
@@ -562,7 +570,7 @@ margin-top: 30px;
 /*490 pixels or less*/
 @media (max-width: 479px) {
   .carousel-indicators {
-    bottom: -100px;
+    bottom: -100px; /* 👈 push it further down */
   }
 
 
@@ -585,7 +593,7 @@ margin-top: 30px;
 
 
   .carousel-indicators {
-    bottom: -133px;
+    bottom: -133px; /* 👈 push it further down */
   }
 
 
@@ -598,6 +606,7 @@ margin-top: 30px;
 
 
 
+/* Apply hover styles only if the device actually supports hover */
 @media (hover: hover) and (pointer: fine) {
   a.link73648:hover {
    background-color: #31511E;
@@ -615,6 +624,7 @@ a.irainicio187gtes:hover {
 
 
 
+/* Apply link active effect only for screens up to 768px (mobile & tablets) */
 @media (max-width: 768px) {
   a.link73648:active {
     background-color: #31511E !important;
@@ -650,8 +660,8 @@ a:focus {
             justify-content: center;
 
 
-  row-gap: 20px; 
-column-gap: 20px; 
+  row-gap: 20px;   /* vertical gap */
+column-gap: 20px; /* horizontal gap */
 
 
 
@@ -664,14 +674,14 @@ column-gap: 20px;
             aspect-ratio: 1 / 1;
         }
         
-     
+        /*800px wide or more*/
 
         @media (min-width: 500px) {
             .wrapper456 {
                 grid-template-columns: repeat(10, 60px);
                 width: auto;
-                row-gap: 30px; 
-column-gap: 45px; 
+                row-gap: 30px;   /* vertical gap */
+column-gap: 45px; /* horizontal gap */
             }
 
 
@@ -686,26 +696,126 @@ column-gap: 45px;
         }
 
 
+/* 499px wide or less*/
 @media (max-width: 499px) {
   .wrapper456 {
-    grid-template-columns: repeat(4, 1fr) !important;
-     width: 75vw ; 
+    grid-template-columns: repeat(4, 1fr) !important; /* keep 4 columns */
+   width: 75vw ; 
 
-row-gap: 20px; 
-column-gap: 35px; 
+row-gap: 20px;   /* vertical gap */
+column-gap: 35px; /* horizontal gap */
   }
 
-.circle4563:nth-child(n+13) {
+
+  /* hide extra circles so only 12 remain (3 rows × 4 cols) */
+  .circle4563:nth-child(n+13) {
     display: none;
   }
 
 
-
-
-
-
   
 }
+
+
+
+
+
+ /* Map container */
+  #mapContainer {
+  display: flex;
+   flex-wrap: nowrap;   
+  gap: 50px;            /* space between map and buttons */
+  justify-content: center;
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+  position: relative;   /* needed for map border positioning */
+align-items: center;  /* <-- add this line */
+
+}
+
+  #googleMap {
+   flex: 1 ;      /* grow/shrink but keep min width */
+height: 400px;         /* fixed height for desktop */
+  border: 5px solid #000;
+  }
+
+  /* Pan buttons container */
+  #panButtons {
+display: flex;
+  flex-direction: column;
+  gap: clamp(4px, 1vw, 12px);
+  align-items: center;
+
+  }
+
+  /* Common button styles */
+  #panButtons button {
+ font-size: clamp(12px, 1.5vw, 16px); /* responsive font size */
+  padding: clamp(6px, 1vw, 12px);      /* responsive padding */
+  width: clamp(80px, 20vw, 150px);     /* responsive button width */
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #0C9CEE;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  }
+
+  /* Up/Down buttons */
+  .up-7686 {
+  
+  
+    align-self: center;
+  }
+
+  /* Left/Right row */
+  .left-right-container {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+  }
+
+  .left-right {
+  
+    flex: none;
+  }
+
+  /* Hover effect */
+  #panButtons button:hover {
+    background-color: #3D899C;
+  }
+
+  /* Background container */
+  #container7485 {
+    padding: 40px 0;
+    background-color: #00a128;
+  }
+
+/*screen is 950px wide or less*/
+@media (max-width: 950px) {
+
+#mapContainer {
+    flex-direction: column; /* stack map and buttons vertically */
+    align-items: center;    /* center them horizontally */
+    gap: 20px;              /* space between map and buttons */
+  }
+
+  
+#googleMap {
+    width: 100%;   /* full width of container */
+flex: 1 1 250px ;      /* grow/shrink but keep min width */
+
+  }
+
+/* Reduce green background padding */
+  #container7485 {
+    padding-bottom: 25px; /* smaller top/bottom padding */
+  }
+
+}
+
+
 
 
 
@@ -756,9 +866,10 @@ column-gap: 35px;
 <div class=" container78478"> 
 
 
+<!-- partial:index.partial.html -->
 
   <div id="slider5948hjy" class="carousel slide" data-ride="carousel">
-   
+    <!-- Indicators -->
     <ol class="carousel-indicators">
       <li class="active">
         <div class="dots" data-target="#slider5948hjy" data-slide-to="0"><span></span></div>
@@ -774,6 +885,7 @@ column-gap: 35px;
       </li>
     </ol>
 
+    <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
       <div class="item active">
         <div class="slide-item7384jdb" style="background-image: url('images/img1.jpg');"></div>
@@ -787,6 +899,7 @@ column-gap: 35px;
     </div>
   </div>
 
+<!-- partial -->
 
 
 </div>
@@ -944,7 +1057,23 @@ Muchas versiones han evolucionado a través de los años, algunas veces por acci
 <br><br>
 
 
+<div id="container7485">
+  <div id="mapContainer">
+    <div id="googleMap"></div>
 
+    <!-- Custom Pan Buttons -->
+    <div id="panButtons">
+      <button class="up-7686" onclick="panMap(0, 100)">Up</button>
+
+      <div class="left-right-container">
+        <button class="left-right" onclick="panMap(100, 0)">Left</button>
+        <button class="left-right" onclick="panMap(-100, 0)">Right</button>
+      </div>
+
+      <button class="up-7686" onclick="panMap(0, -100)">Down</button>
+    </div>
+  </div>
+</div>
 
 
 
@@ -963,11 +1092,13 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"
 <script>
     const wrapper456 = document.querySelector('.wrapper456');
 
+    // Create 40 animated circles
     for (let i = 0; i < 24; i++) {
         const circle4563 = document.createElement('div');
         circle4563.classList.add('circle4563');
         wrapper456.appendChild(circle4563);
 
+        // Animate each circle using GSAP
         gsap.to(circle4563, {
            scale: 0.2,
             duration: 1 + Math.random(),
@@ -983,6 +1114,7 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"
 const wrapper4354 = document.querySelector('.wrapper3456');
 let starsCount = 0;
 
+// --- Star generator functions ---
 function polar(cx, cy, r, angleDeg){
   const a = angleDeg * Math.PI/180;
   return { x: cx + r*Math.cos(a), y: cy + r*Math.sin(a) };
@@ -1024,6 +1156,7 @@ function makeStarPath(outerR, innerR, tension){
   return catmullRomToBezier(pts, tension);
 }
 
+// --- Create stars dynamically ---
 function createStars(count, outerR = 63, innerR = 44) {
   wrapper4354.innerHTML = ''; 
   starsCount = count;
@@ -1034,6 +1167,7 @@ function createStars(count, outerR = 63, innerR = 44) {
     svg.setAttribute("width", "60");
     svg.setAttribute("height", "60");
 
+    // Gradient defs
     const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
     const grad = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
     const gradId = "grad" + i;
@@ -1080,11 +1214,11 @@ function updateStars() {
   const screenWidth = window.innerWidth;
 
   if (screenWidth >= 500 && starsCount !== 10) {
-   
-    createStars(10, 68, 49); 
+    // Normal size for larger screens
+    createStars(10, 68, 49); // outerR = 63, innerR = 44
   } else if (screenWidth < 500 && starsCount !== 15) {
-  
-    createStars(15, 65, 40); 
+    // Bigger stars for small screens
+    createStars(15, 65, 40); // outerR = 80, innerR = 55
   }
 }
 
@@ -1117,6 +1251,7 @@ window.addEventListener('resize', updateStars);
     canvas.height = cssH * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
+    // Get rectangle height ratio from CSS variable
     const rectHeightRatio = parseFloat(getComputedStyle(document.documentElement)
                                        .getPropertyValue('--rect-height-ratio'));
 
@@ -1125,6 +1260,7 @@ window.addEventListener('resize', updateStars);
     rect.x = (cssW - rect.w) / 2;
     rect.y = (cssH - rect.h) / 2;
 
+    // Keep ball inside rectangle
     ball.x = Math.min(Math.max(ball.x, rect.x + ball.r), rect.x + rect.w - ball.r);
     ball.y = Math.min(Math.max(ball.y, rect.y + ball.r), rect.y + rect.h - ball.r);
   }
@@ -1148,13 +1284,16 @@ window.addEventListener('resize', updateStars);
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+    // Draw rectangle background
     ctx.fillStyle = '#626F47';
     ctx.fillRect(rect.x, rect.y, rect.w, rect.h);
 
+    // Draw rectangle border
     ctx.lineWidth = 3;
     ctx.strokeStyle = 'black';
     ctx.strokeRect(rect.x, rect.y, rect.w, rect.h);
 
+    // Draw ball
     ctx.beginPath();
     ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI * 2);
     ctx.fillStyle = '#F26B0F';
@@ -1201,10 +1340,7 @@ window.addEventListener('resize', updateStars);
 
 
 <script>
-const colors = ['#154D71' , 
-'#D864A9', 
-
-'#54B435' ]; 
+const colors = ['#154D71', '#D864A9', '#54B435']; // hex colors
 let index = 0;
 const div = document.getElementById('canvas-wrapper898');
 
@@ -1213,6 +1349,7 @@ function changeColor() {
   div.style.background = colors[index];
 }
 
+// Change color every 2 seconds
 setInterval(changeColor, 5000);
 </script>
 
@@ -1225,16 +1362,21 @@ const clock2 = document.getElementById('clock7384');
 const canvas = document.getElementById('canvas7849hnki');
 const ctx = canvas.getContext('2d');
 
+// Match resolution to container size
 canvas.width  = clock2.clientWidth;
 canvas.height = clock2.clientHeight;
 
+// Border (15px) + outline (4px)
 const borderOffset = 19;
 
+// True center of the orange circle
 const centerX2 = borderOffset + (canvas.width  - borderOffset * 2) / 2;
 const centerY2 = borderOffset + (canvas.height - borderOffset * 2) / 2;
 
+// Inner radius of the orange circle
 const radius2  = (Math.min(canvas.width, canvas.height) - borderOffset * 2) / 2;
 
+// --- dots ---
 for (let i = 0; i < 60; i++) {
   const angle = (i * 6) * Math.PI / 180;
   const x = centerX2 + radius2 * Math.sin(angle);
@@ -1257,6 +1399,7 @@ for (let i = 0; i < 60; i++) {
 
 <script>
 
+  // Add 12, 3, 6, 9 numbers
 const numbers = [
   { num: '12', angle: 0 },
   { num: '3', angle: 90 },
@@ -1267,10 +1410,12 @@ const numbers = [
 numbers.forEach(({ num, angle }) => {
   const rad = angle * Math.PI / 180;
 
+  // Default inward distance
   let inward = 25;
 
+  // Add extra spacing ONLY for "12"
   if (num === "12") {
-    inward = 25; 
+    inward = 25; // change this number until spacing looks good
   }
 
   const x = centerX2 + (radius2 - inward) * Math.sin(rad);
@@ -1295,7 +1440,7 @@ numbers.forEach(({ num, angle }) => {
 
 
 <script>
-
+  // --- draw hands ---
 function drawHands() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   const now = new Date();
@@ -1308,7 +1453,7 @@ function drawHands() {
 
   const hrAngle  = (Math.PI/6) * hr ;
 
-
+  // Hour hand
   ctx.beginPath();
   ctx.strokeStyle = "#059212";
   ctx.lineWidth = 6;
@@ -1318,7 +1463,7 @@ function drawHands() {
              centerY2 - Math.cos(hrAngle) * (radius2 * 0.5));
   ctx.stroke();
 
-
+  // Minute hand
   ctx.beginPath();
   ctx.strokeStyle = "#059212";
   ctx.lineWidth = 4;
@@ -1327,6 +1472,7 @@ function drawHands() {
              centerY2 - Math.cos(minAngle) * (radius2 * 0.85));
   ctx.stroke();
 
+  // Second hand
   ctx.beginPath();
   ctx.strokeStyle = "red";
   ctx.lineWidth = 2;
@@ -1336,7 +1482,7 @@ function drawHands() {
   ctx.stroke();
   ctx.strokeStyle = "black";
 
-
+  // Center pivot dot
   ctx.beginPath();
   ctx.fillStyle = "black";
   ctx.arc(centerX2, centerY2, 4, 0, 2*Math.PI);
@@ -1404,24 +1550,63 @@ drawHands();
 
 <script>
 $(document).ready(function(){
-
+  // Add smooth scrolling to all links
   $("a").on('click', function(event) {
 
+    // Make sure this.hash has a value before overriding default behavior
     if (this.hash !== "") {
+      // Prevent default anchor click behavior
       event.preventDefault();
 
-       var hash = this.hash;
+      // Store hash
+      var hash = this.hash;
 
-     $('html, body').animate({
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
         scrollTop: $(hash).offset().top
       }, 800, function(){
    
+        // Add hash (#) to URL when done scrolling (default click behavior)
         window.location.hash = hash;
       });
-    } 
+    } // End if
   });
 });
 </script>
+
+
+<script>
+let map;
+
+function myMap() {
+  map = new google.maps.Map(document.getElementById("googleMap"), {
+    center: new google.maps.LatLng(4.723686397456661, -74.05223058477206),
+    zoom: 15,
+    draggable: false,
+    disableDefaultUI: true,
+    zoomControl: true,
+    gestureHandling: "cooperative"
+  });
+}
+
+function panMap(x, y) {
+  const scale = Math.pow(2, map.getZoom());
+  const worldCoordinateCenter = map.getProjection().fromLatLngToPoint(map.getCenter());
+  const pixelOffset = new google.maps.Point(x / scale, y / scale);
+  const newCenter = map.getProjection().fromPointToLatLng(
+    new google.maps.Point(
+      worldCoordinateCenter.x - pixelOffset.x,
+      worldCoordinateCenter.y - pixelOffset.y
+    )
+  );
+  map.panTo(newCenter);
+}
+</script>
+
+<!-- Replace with your own API key -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUYLvm49iya5cNEYdPuV6SzhlUjmyA-No&callback=myMap" async defer></script>
+
 
 
 
@@ -1434,3 +1619,4 @@ $(document).ready(function(){
 
 </body>
 </html>
+

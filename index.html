@@ -106,7 +106,23 @@ flex: 1 1 250px ;      /* grow/shrink but keep min width */
 }
 
 
+/* Remove tap highlight on mobile */
+#panButtons button {
+  -webkit-tap-highlight-color: transparent; /* Safari/Chrome on mobile */
+  -webkit-user-select: none; /* prevent text selection */
 
+}
+
+
+
+@media (max-width: 768px) {
+
+ #panButtons button:active{
+  background-color: #34699A;
+
+ }
+
+}
 
 </style>
 </head>
@@ -169,7 +185,4 @@ function panMap(x, y) {
 
 </body>
 </html>
-
-
-
 

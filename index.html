@@ -1722,13 +1722,13 @@ setInterval(changeColor, 5000);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
    
-    drawHand(centerX, centerY, ((hours ) * 30) * Math.PI / 180, 50, 8, '#000');
+    drawHand(centerX, centerY, ((hours ) * 30) * Math.PI / 180, 50, 8, '#FF0066');
 
   
-    drawHand(centerX, centerY, ((minutes ) * 6) * Math.PI / 180, 70, 5, '#000');
+    drawHand(centerX, centerY, ((minutes ) * 6) * Math.PI / 180, 80, 5, '#FF0066');
 
   
-    drawHand(centerX, centerY, (seconds * 6) * Math.PI / 180, 90, 2, 'red');
+    drawHand(centerX, centerY, (seconds * 6) * Math.PI / 180, 80, 2, 'red');
 
     requestAnimationFrame(drawClockHands);
   }

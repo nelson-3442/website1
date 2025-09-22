@@ -1,37 +1,403 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Touch Button Example</title>
-  <style>
-    #myBtn {
-      padding: 20px 40px;
-      font-size: 20px;
-      border: none;
-      border-radius: 12px;
-      background: #3498db;
-      color: white;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-  </style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+
+
+<style>
+    
+/* proyecto juego (inicio style) */
+
+.canvas728hne {
+border: 1px solid #333;
+background-color: #7695FF;
+display: block;
+margin: 10px auto;
+}
+
+
+#gameContainer {
+display: flex;
+justify-content: center; /* center the whole block */
+gap: 60px;               /* space between controls and buttons */
+margin-top: 20px;
+}
+
+#controls-7685, #gameButtons {
+text-align: center;
+}
+
+
+
+/* left and right button */
+
+.button8593ejy{
+
+
+font-size: 20px;
+padding-left: 50px ;
+padding-right: 50px;
+padding-top: 13px;
+padding-bottom: 13px;
+background-color: #A2CA71;
+color: #F5004F;
+font-family: "Nunito", sans-serif;
+font-weight: 700;
+ 
+border-width: 5px;   /* thickness */
+
+}
+
+
+.button8593ejy + .button8593ejy {
+  margin-left: 20px; /* only applies to the RIGHT button */
+}
+
+/* up and down buttons */
+
+.button537jnb{
+
+font-size: 20px;
+padding-left: 65px;
+padding-right: 65px;
+padding-top: 13px;
+padding-bottom: 13px;
+background-color: #A2CA71;
+color: #F5004F;
+font-family: "Nunito", sans-serif;
+font-weight: 700;
+border-width: 5px;   /* thickness */
+}
+
+
+/* start button */
+.start8493jn{
+font-size: 20px;
+padding-top: 17px;
+padding-bottom: 17px;
+
+
+width: 150px;   /* 👈 set same width */
+background-color: #A2CA71;
+color: #F5004F;
+border-width: 5px;   /* thickness */
+
+}
+
+/* pause button */
+.pause732jen{
+
+font-size: 20px;
+padding-top: 17px;
+padding-bottom: 17px;
+
+width: 150px;   /* 👈 set same width */
+background-color: #A2CA71;
+color: #F5004F;
+ border-width: 5px;   /* thickness */
+
+}
+
+
+.button8593ejy,
+.button537jnb,
+.start8493jn,
+.pause732jen {
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+
+.button8593ejy:hover,
+.button537jnb:hover,
+.start8493jn:hover,
+.pause732jen:hover {
+  background-color: #508D69; /* example */
+  
+  cursor: pointer;
+}
+
+
+#controls-7685{
+margin-bottom: 50px;
+}
+
+
+
+/* proyecto juego (final style) */
+
+
+</style>
 </head>
 <body>
 
-  <button id="myBtn">Touch me</button>
+<!-- proyecto juego (inicio body)-->
 
-  <script>
-    const btn = document.getElementById("myBtn");
+<!-- Always visible canvas -->
+<canvas class="canvas728hne" id="gameCanvas" width="480" height="270"></canvas>
 
-    // finger down (touchstart)
-    btn.addEventListener("touchstart", () => {
-      btn.style.background = "#2ecc71"; // green
-      btn.textContent = "Holding...";
-    });
+<!-- inicio bloque 1 (div)-->
+<!-- Game Layout -->
+<div id="gameContainer">
+
+<!-- inicio bloque 2 (div) -->
+<!-- Controls (left) -->
+<div id="controls-7685">
+<button class="button537jnb" onmousedown="moveup()" onmouseup="clearmove()" ontouchstart="moveup()">UP</button><br><br>
+<button class="button8593ejy" onmousedown="moveleft()" onmouseup="clearmove()" ontouchstart="moveleft()">LEFT</button>
+<button class="button8593ejy" onmousedown="moveright()" onmouseup="clearmove()" ontouchstart="moveright()">RIGHT</button><br><br>
+<button class="button537jnb" onmousedown="movedown()" onmouseup="clearmove()" ontouchstart="movedown()">DOWN</button>
+</div>
+<!-- final bloque 2 (div) -->
+
+<!-- inicio bloque 3 (div)-->
+
+<!-- Start Button -->
+<div id="gameButtons">
+
+<button class="start8493jn" id="startBtn" onclick="startGame()">Start Game</button>
+<br><br>
+<!-- pause button -->
+<button class="pause732jen" id="pauseBtn" onclick="togglePause()" disabled>Pause</button>
+
+</div>
+<!-- final bloque 3 (div) -->
+
+</div>
+<!-- final bloque 1 (div) -->
 
 
-  </script>
+
+<!-- proyecto juego (final body)-->
+
+
+<!-- proyecto juego (inicio js)-->
+
+
+<!-- inicio script 1-->
+<script>
+var myGamePiece;
+var myObstacles = [];
+var mySound;
+var myMusic;
+var gameOver = false;
+// 🔹 Global score
+var score = 0;
+
+var myGameArea = {
+    canvas: document.getElementById("gameCanvas"),
+    start: function() {
+        this.context = this.canvas.getContext("2d");
+        this.frameNo = 0;
+        this.interval = setInterval(updateGameArea, 20);
+    },
+    stop: function() {
+     clearInterval(this.interval);
+    document.getElementById("startBtn").disabled = false;
+    document.getElementById("pauseBtn").disabled = true; // 🔹 disable pause when game ends
+    gameOver = true;
+
+    },
+    clear: function() {
+      
+      this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+};
+
+function startGame() {
+
+document.getElementById("pauseBtn").disabled = false;
+document.getElementById("pauseBtn").innerText = "Pause";
+
+
+    // Reset state
+    document.getElementById("startBtn").disabled = true;
+    myObstacles = [];
+    gameOver = false;
+
+    // 🔹 Reset score
+    score = 0;
+
+    // Create player + sounds
+    myGamePiece = new component(30, 30, "#FFC900", 10, 120);
+    mySound = new sound("bounce.mp3");
+    myMusic = new sound("gametheme.mp3");
+    myMusic.sound.loop = true;
+    myMusic.play();
+
+    // Start game area
+    myGameArea.start();
+}
+
+// Player & Obstacles
+function component(width, height, color, x, y) {
+    this.width = width;
+    this.height = height;
+    this.speedX = 0;
+    this.speedY = 0;    
+    this.x = x;
+    this.y = y;    
+    this.update = function() {
+        ctx = myGameArea.context;
+        ctx.fillStyle = color;
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+    }
+    this.newPos = function() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        // keep inside canvas
+        if (this.x < 0) this.x = 0;
+        if (this.y < 0) this.y = 0;
+        if (this.x + this.width > myGameArea.canvas.width) {
+            this.x = myGameArea.canvas.width - this.width;
+        }
+        if (this.y + this.height > myGameArea.canvas.height) {
+            this.y = myGameArea.canvas.height - this.height;
+        }
+    }    
+    this.crashWith = function(otherobj) {
+        var myleft = this.x;
+        var myright = this.x + (this.width);
+        var mytop = this.y;
+        var mybottom = this.y + (this.height);
+        var otherleft = otherobj.x;
+        var otherright = otherobj.x + (otherobj.width);
+        var othertop = otherobj.y;
+        var otherbottom = otherobj.y + (otherobj.height);
+        var crash = true;
+        if ((mybottom < othertop) || (mytop > otherbottom) || 
+            (myright < otherleft) || (myleft > otherright)) {
+            crash = false;
+        }
+        return crash;
+    }
+}
+
+// Update loop
+function updateGameArea() {
+    var x, height, gap, minHeight, maxHeight, minGap, maxGap;
+
+    // Check crash
+    for (i = 0; i < myObstacles.length; i += 1) {
+        if (myGamePiece.crashWith(myObstacles[i])) {
+            mySound.play();
+            myMusic.stop();
+            myGameArea.stop();
+            drawGameOver();
+            return;
+        } 
+    }
+
+    myGameArea.clear();
+    myGameArea.frameNo += 1;
+// 🔹 Increase score
+    score++;
+    // Add obstacles
+    if (myGameArea.frameNo == 1 || everyinterval(200)) {
+        x = myGameArea.canvas.width;
+        minHeight = 20;
+        maxHeight = 200;
+        height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
+        minGap = 50;
+        maxGap = 200;
+        gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
+        myObstacles.push(new component(10, height, "#85EF47", x, 0));
+        myObstacles.push(new component(10, x - height - gap, "#85EF47", x, height + gap));
+    }
+
+    // Move obstacles
+    for (i = 0; i < myObstacles.length; i += 1) {
+        myObstacles[i].x -= 0.8;
+        myObstacles[i].update();
+    }
+
+    myGamePiece.newPos();
+    myGamePiece.update();
+    // 🔹 Draw score
+    drawScore();
+}
+
+
+// Draw Score
+function drawScore() {
+    let ctx = myGameArea.context;
+    ctx.font = "500 25px 'Nunito', serif";
+    ctx.fillStyle = "black";
+    ctx.textAlign = "left";
+    ctx.fillText("Score: " + score, 14, 34);
+}
+
+
+// Draw Game Over text
+function drawGameOver() {
+    let ctx = myGameArea.context;
+    ctx.font = "700 30px 'Nunito'";
+    ctx.fillStyle = "black";
+    ctx.textAlign = "center";
+    ctx.fillText("GAME OVER", myGameArea.canvas.width / 2, myGameArea.canvas.height / 2);
+
+// 🔹 Also show final score
+    ctx.font = "500 20px 'Nunito'";
+    ctx.fillText("Final Score: " + score, myGameArea.canvas.width / 2, myGameArea.canvas.height / 2 + 40);
+
+
+}
+
+// Sound
+function sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls-7685", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function(){ this.sound.play(); }
+    this.stop = function(){ this.sound.pause(); this.sound.currentTime = 0; }
+}
+
+// Helpers
+function everyinterval(n) {
+    return (myGameArea.frameNo / n) % 1 === 0;
+}
+
+// Controls
+function moveup() { myGamePiece.speedY = -1.3; }
+function movedown() { myGamePiece.speedY = 1.3; }
+function moveleft() { myGamePiece.speedX = -1.3; }
+function moveright() { myGamePiece.speedX = 1.3; }
+function clearmove() { myGamePiece.speedX = 0; myGamePiece.speedY = 0; }
+</script>
+
+<!-- final script 1-->
+
+
+<!-- inicio script 2-->
+<script> 
+var isPaused = false;
+
+function togglePause() {
+    if (isPaused) {
+        // Resume
+        myGameArea.interval = setInterval(updateGameArea, 20);
+        document.getElementById("pauseBtn").innerText = "Pause";
+        isPaused = false;
+        if (myMusic) myMusic.play();
+    } else {
+        // Pause
+        clearInterval(myGameArea.interval);
+        document.getElementById("pauseBtn").innerText = "Resume";
+        isPaused = true;
+        if (myMusic) myMusic.sound.pause();
+    }
+}
+
+</script>
+
+<!-- final script 2-->
+
+
 
 </body>
 </html>

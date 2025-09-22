@@ -30,17 +30,7 @@
       btn.textContent = "Holding...";
     });
 
-    // finger up (touchend)
-    btn.addEventListener("touchend", () => {
-      btn.style.background = "#3498db"; // blue
-      btn.textContent = "Touch me";
-      alert("You pressed the button!"); // action
-    });
 
-    // fallback for PC mouse
-    btn.addEventListener("click", () => {
-      alert("Clicked with mouse!");
-    });
   </script>
 
 </body>

@@ -145,11 +145,12 @@ margin-bottom: 50px;
 <!-- inicio bloque 2 (div) -->
 <!-- Controls (left) -->
 <div id="controls-7685">
-<button class="button537jnb" onmousedown="moveup()" onmouseup="clearmove()" ontouchstart="moveup()">UP</button><br><br>
-<button class="button8593ejy" onmousedown="moveleft()" onmouseup="clearmove()" ontouchstart="moveleft()">LEFT</button>
-<button class="button8593ejy" onmousedown="moveright()" onmouseup="clearmove()" ontouchstart="moveright()">RIGHT</button><br><br>
-<button class="button537jnb" onmousedown="movedown()" onmouseup="clearmove()" ontouchstart="movedown()">DOWN</button>
+  <button class="button537jnb" id="btnUp">UP</button><br><br>
+  <button class="button8593ejy" id="btnLeft">LEFT</button>
+  <button class="button8593ejy" id="btnRight">RIGHT</button><br><br>
+  <button class="button537jnb" id="btnDown">DOWN</button>
 </div>
+
 <!-- final bloque 2 (div) -->
 
 <!-- inicio bloque 3 (div)-->
@@ -397,7 +398,28 @@ function togglePause() {
 
 <!-- final script 2-->
 
+<script>
+function bindButton(id, onPress) {
+  const btn = document.getElementById(id);
+
+  // Start movement (mouse or touch)
+  btn.addEventListener("mousedown", onPress);
+  btn.addEventListener("touchstart", onPress);
+
+  // Stop movement (release anywhere on screen)
+  document.addEventListener("mouseup", clearmove);
+  document.addEventListener("touchend", clearmove);
+}
+
+bindButton("btnUp", moveup);
+bindButton("btnDown", movedown);
+bindButton("btnLeft", moveleft);
+bindButton("btnRight", moveright);
+</script>
 
 
 </body>
 </html>
+
+
+the buttons "stick" sometimes 

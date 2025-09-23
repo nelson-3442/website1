@@ -1,1 +1,612 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+
+
+<style>
+
+
+
+/* proyecto juego (inicio css) */
+
+.canvas728hne {
+border: 3px solid #333;
+background-color: #7695FF;
+display: block;
+margin: 40px 0;
+margin-left: -30px;  /* 👈 add left margin */
+
+}
+
+
+#gameContainer {
+  display: flex;
+  justify-content: center;   /* canvas + controls side by side */
+  align-items: flex-start;   /* align to the top */
+  gap: 20px;                 /* space between canvas and controls */
+
+  width: fit-content;        /* shrink to wrap its children */
+  margin: 0 auto;            /* <-- centers this block in its parent */
+}
+
+
+
+
+/* left and right button */
+
+.button8593ejy{
+
+
+background-color: #A2CA71;
+border-width: 5px;   /* thickness */
+
+
+}
+
+
+
+/* start button */
+.start8493jn{
+font-size: 20px;
+padding-top: 10px;
+padding-bottom: 10px;
+
+
+width: 150px;   /* 👈 set same width */
+background-color: #A2CA71;
+color: #F5004F;
+border-width: 5px;   /* thickness */
+
+}
+
+/* pause button */
+.pause732jen{
+
+font-size: 20px;
+padding-top: 10px;
+padding-bottom: 10px;
+
+width: 150px;   /* 👈 set same width */
+background-color: #A2CA71;
+color: #F5004F;
+ border-width: 5px;   /* thickness */
+
+}
+
+
+.button8593ejy,
+.button537jnb,
+.start8493jn,
+.pause732jen {
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+
+.button8593ejy:hover,
+.button537jnb:hover,
+.start8493jn:hover,
+.pause732jen:hover {
+  background-color: #508D69; /* example */
+  
+  cursor: pointer;
+}
+
+
+
+
+
+.button8593ejy:active,
+.button537jnb:active,
+.start8493jn:active,
+.pause732jen:active {
+  background-color: #508D69; /* example */
+  
+}
+
+
+
+
+#controlsWrapper {
+  display: flex;
+  flex-direction: column; /* stack arrows + buttons */
+  align-items: center;    /* center them horizontally */
+}
+
+
+
+
+#controls-7685 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* center children horizontally */
+  gap: 20px;             /* spacing between rows */
+  margin-bottom: 50px;
+}
+
+.rowLR {
+  display: flex;
+  justify-content: center;
+  gap: 20px;             /* space between left/right */
+}
+
+/* Force same width for both button types */
+/* Apply same width + height to all arrow buttons */
+.button537jnb,
+.button8593ejy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;   /* 👈 same width */
+  height: 65px;  /* 👈 same height */
+  background-color: #A2CA71;
+  border-width: 5px;
+  padding: 0;    /* remove padding so images center properly */
+}
+
+
+
+
+.rowUpLR {
+  display: flex;
+  align-items: center;  /* align UP and LEFT/RIGHT vertically */
+  gap: 20px;            /* spacing between UP and LEFT/RIGHT group */
+}
+
+
+
+
+.img-194pe{
+
+  height: 45px; 
+ 
+}
+
+
+.img-834nei{
+
+height: 45px;
+
+}
+
+
+.rowArrows {
+  display: flex;      /* place UP/DOWN column next to LEFT/RIGHT column */
+  gap: 10px !important;          /* space between columns */
+  align-items: center;
+}
+
+
+
+.colUpDown {
+  display: flex;
+  flex-direction: column; /* stack UP & DOWN vertically */
+  gap: 15px;
+  align-items: center;
+}
+
+
+.colLR {
+  display: flex;
+  flex-direction: column; /* stack LEFT & RIGHT vertically */
+  gap: 15px;
+  align-items: center;
+  
+}
+
+
+.img-934br3{
+
+height: 38px;
+
+}
+
+
+.rowArrows {
+  display: flex;
+  align-items: flex-start; /* makes tops align */
+  gap: 20px;
+}
+
+
+#btnUp {
+  margin-top: 15px;   /* moves UP button down */
+}
+
+
+#btnLeft {
+  margin-top: 15px;   /* moves LEFT button down */
+}
+
+
+.button537jnb,
+.button8593ejy{
+
+
+-webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Safari */
+  -khtml-user-select: none;    /* Old Safari */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* IE/Edge */
+  user-select: none;           /* Standard */
+
+
+}
+
+
+.button8593ejy.pressed,
+.button537jnb.pressed {
+  background-color: #508D69; /* same as your :active */
+}
+
+
+#gameButtons{
+
+margin-top: -30px; /* increase or decrease this value */
+
+
+
+}
+
+
+/* proyecto juego (final css) */
+
+
+</style>
+</head>
+<body>
+
+<!-- proyecto juego (inicio body)-->
+
+<div id="gameContainer">
+  <!-- Canvas -->
+  <canvas class="canvas728hne" id="gameCanvas" width="410" height="260"></canvas>
+
+  <!-- Controls + Game Buttons -->
+  <div id="controlsWrapper">
+   
+
+<div id="controls-7685">
+  
+
+<div class="rowArrows">
+  <!-- Column UP/DOWN -->
+  <div class="colUpDown">
+    <button class="button537jnb" id="btnUp">
+      <img src="images/up arrow 01.svg" alt="img" class="img-194pe">
+    </button>
+    <button class="button537jnb" id="btnDown">
+      <img src="images/down arrow 1.svg" alt="img" class="img-834nei">
+    </button>
+  </div>
+
+  <!-- Column LEFT/RIGHT stacked -->
+  <div class="colLR">
+    <button class="button8593ejy" id="btnLeft">
+<img src="images/left arrow-01.svg" alt="img" class="img-934br3">
+    </button>
+    <button class="button8593ejy" id="btnRight">
+<img src="images/right arrow-01.svg" alt="img" class="img-934br3">
+    </button>
+  </div>
+</div>
+
+
+
+
+
+</div>
+
+
+
+    <div id="gameButtons">
+      <button class="start8493jn" id="startBtn" onclick="startGame()">Start Game</button>
+      <br><br>
+      <button class="pause732jen" id="pauseBtn" onclick="togglePause()" disabled>Pause</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- proyecto juego (final body)-->
+
+
+<!-- proyecto juego (inicio js)-->
+
+
+<!-- inicio script 1-->
+<script>
+var myGamePiece;
+var myObstacles = [];
+var mySound;
+var myMusic;
+var gameOver = false;
+// 🔹 Global score
+var score = 0;
+
+var myGameArea = {
+    canvas: document.getElementById("gameCanvas"),
+    start: function() {
+        this.context = this.canvas.getContext("2d");
+        this.frameNo = 0;
+        this.interval = setInterval(updateGameArea, 20);
+    },
+    stop: function() {
+     clearInterval(this.interval);
+    document.getElementById("startBtn").disabled = false;
+    document.getElementById("pauseBtn").disabled = true; // 🔹 disable pause when game ends
+    gameOver = true;
+
+    },
+    clear: function() {
+      
+      this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+};
+
+function startGame() {
+
+document.getElementById("pauseBtn").disabled = false;
+document.getElementById("pauseBtn").innerText = "Pause";
+
+
+    // Reset state
+    document.getElementById("startBtn").disabled = true;
+    myObstacles = [];
+    gameOver = false;
+
+    // 🔹 Reset score
+    score = 0;
+
+    // Create player + sounds
+    myGamePiece = new component(30, 30, "#FFC900", 10, 120);
+    mySound = new sound("bounce.mp3");
+    myMusic = new sound("gametheme2.mp3");
+    myMusic.sound.loop = true;
+    myMusic.play();
+
+    // Start game area
+    myGameArea.start();
+}
+
+// Player & Obstacles
+function component(width, height, color, x, y) {
+    this.width = width;
+    this.height = height;
+    this.speedX = 0;
+    this.speedY = 0;    
+    this.x = x;
+    this.y = y;    
+    this.update = function() {
+        ctx = myGameArea.context;
+        ctx.fillStyle = color;
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+    }
+    this.newPos = function() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        // keep inside canvas
+        if (this.x < 0) this.x = 0;
+        if (this.y < 0) this.y = 0;
+        if (this.x + this.width > myGameArea.canvas.width) {
+            this.x = myGameArea.canvas.width - this.width;
+        }
+        if (this.y + this.height > myGameArea.canvas.height) {
+            this.y = myGameArea.canvas.height - this.height;
+        }
+    }    
+    this.crashWith = function(otherobj) {
+        var myleft = this.x;
+        var myright = this.x + (this.width);
+        var mytop = this.y;
+        var mybottom = this.y + (this.height);
+        var otherleft = otherobj.x;
+        var otherright = otherobj.x + (otherobj.width);
+        var othertop = otherobj.y;
+        var otherbottom = otherobj.y + (otherobj.height);
+        var crash = true;
+        if ((mybottom < othertop) || (mytop > otherbottom) || 
+            (myright < otherleft) || (myleft > otherright)) {
+            crash = false;
+        }
+        return crash;
+    }
+}
+
+// Update loop
+function updateGameArea() {
+    var x, height, gap, minHeight, maxHeight, minGap, maxGap;
+
+    // Check crash
+    for (i = 0; i < myObstacles.length; i += 1) {
+        if (myGamePiece.crashWith(myObstacles[i])) {
+            mySound.play();
+            myMusic.stop();
+            myGameArea.stop();
+            drawGameOver();
+            return;
+        } 
+    }
+
+    myGameArea.clear();
+    myGameArea.frameNo += 1;
+// 🔹 Increase score
+    score++;
+    // Add obstacles
+    if (myGameArea.frameNo == 1 || everyinterval(200)) {
+        x = myGameArea.canvas.width;
+        minHeight = 20;
+        maxHeight = 200;
+        height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
+        minGap = 50;
+        maxGap = 200;
+        gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
+        myObstacles.push(new component(10, height, "#85EF47", x, 0));
+        myObstacles.push(new component(10, x - height - gap, "#85EF47", x, height + gap));
+    }
+
+    // Move obstacles
+    for (i = 0; i < myObstacles.length; i += 1) {
+        myObstacles[i].x -= 0.8;
+        myObstacles[i].update();
+    }
+
+    myGamePiece.newPos();
+    myGamePiece.update();
+    // 🔹 Draw score
+    drawScore();
+}
+
+
+// Draw Score
+function drawScore() {
+    let ctx = myGameArea.context;
+    ctx.font = "500 25px 'Nunito', serif";
+    ctx.fillStyle = "black";
+    ctx.textAlign = "left";
+    ctx.fillText("Score: " + score, 14, 34);
+}
+
+
+// Draw Game Over text
+function drawGameOver() {
+    let ctx = myGameArea.context;
+    ctx.font = "700 30px 'Nunito'";
+    ctx.fillStyle = "black";
+    ctx.textAlign = "center";
+    ctx.fillText("GAME OVER", myGameArea.canvas.width / 2, myGameArea.canvas.height / 2);
+
+// 🔹 Also show final score
+    ctx.font = "500 20px 'Nunito'";
+    ctx.fillText("Final Score: " + score, myGameArea.canvas.width / 2, myGameArea.canvas.height / 2 + 40);
+
+
+}
+
+// Sound
+function sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls-7685", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function(){ this.sound.play(); }
+    this.stop = function(){ this.sound.pause(); this.sound.currentTime = 0; }
+}
+
+// Helpers
+function everyinterval(n) {
+    return (myGameArea.frameNo / n) % 1 === 0;
+}
+
+// Controls
+function moveup() { myGamePiece.speedY = -1.3; }
+function movedown() { myGamePiece.speedY = 1.3; }
+function moveleft() { myGamePiece.speedX = -1.3; }
+function moveright() { myGamePiece.speedX = 1.3; }
+function clearmove() { myGamePiece.speedX = 0; myGamePiece.speedY = 0; }
+</script>
+
+<!-- final script 1-->
+
+
+<!-- inicio script 2-->
+<script> 
+var isPaused = false;
+
+function togglePause() {
+    if (isPaused) {
+        // Resume
+        myGameArea.interval = setInterval(updateGameArea, 20);
+        document.getElementById("pauseBtn").innerText = "Pause";
+        isPaused = false;
+        if (myMusic) myMusic.play();
+    } else {
+        // Pause
+        clearInterval(myGameArea.interval);
+        document.getElementById("pauseBtn").innerText = "Resume";
+        isPaused = true;
+        if (myMusic) myMusic.sound.pause();
+    }
+}
+
+</script>
+
+<!-- final script 2-->
+
+
+<!-- inicio script 3-->
+<script>
+function bindButton(id, onPress) {
+  const btn = document.getElementById(id);
+
+  // Start movement (mouse or touch)
+  btn.addEventListener("mousedown", onPress);
+  btn.addEventListener("touchstart", onPress);
+
+  // Stop movement (release anywhere on screen)
+  document.addEventListener("mouseup", clearmove);
+  document.addEventListener("touchend", clearmove);
+}
+
+bindButton("btnUp", moveup);
+bindButton("btnDown", movedown);
+bindButton("btnLeft", moveleft);
+bindButton("btnRight", moveright);
+</script>
+<!-- final script 3-->
+
+<!-- inicio script 4-->
+<script> 
+
+document.querySelectorAll(
+  ".button8593ejy, .button537jnb, .start8493jn, .pause732jen"
+).forEach(btn => {
+  btn.addEventListener("dragstart", e => e.preventDefault());
+});
+
+
+</script>
+<!-- final script 4-->
+
+<!-- inicio script 5-->
+<script>
+document.querySelectorAll(".button537jnb, .button8593ejy").forEach(btn => {
+  // Disable context menu
+  btn.addEventListener("contextmenu", e => e.preventDefault());
+
+  // Touch start: highlight button
+  btn.addEventListener("touchstart", e => {
+    e.preventDefault();
+    btn.classList.add("pressed");
+  }, { passive: false });
+
+  // Touch end: remove highlight
+  btn.addEventListener("touchend", e => {
+    btn.classList.remove("pressed");
+  });
+
+  // (optional) also remove if finger moves away
+  btn.addEventListener("touchcancel", e => {
+    btn.classList.remove("pressed");
+  });
+});
+</script>
+
+<!-- final script 5-->
+
+
+</body>
+</html>
+
+
+how to change gap between up and left  buttons
+
 

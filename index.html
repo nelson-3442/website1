@@ -16,31 +16,22 @@
       animation: fire 1.5s infinite alternate;
     }
 
-    @keyframes fire {
-      0% {
-        text-shadow: 
-          0 0 5px #ff6a00,
-          0 0 10px #ff6a00,
-          0 0 20px #ff0000;
-        color: #ffae00;
-      }
-      50% {
-        text-shadow: 
-          0 0 10px #ffae00,
-          0 0 20px #ff4500,
-          0 0 30px #ff0000,
-          0 0 40px #ff0000;
-        color: #fff200;
-      }
-      100% {
-        text-shadow: 
-          0 0 5px #ff6a00,
-          0 0 15px #ff0000,
-          0 0 25px #ff4500,
-          0 0 35px #ff0000;
-        color: #ff6a00;
-      }
-    }
+  @keyframes fire {
+  0% {
+    text-shadow: 0 0 4px #ffae00;
+    color: #ffae00; /* bright yellow */
+  }
+  50% {
+    text-shadow: 0 0 8px #ff6a00;
+    color: #fff200; /* yellow */
+  }
+  100% {
+    text-shadow: 0 0 6px #ff6a00;
+    color: #ff6a00; /* orange */
+  }
+}
+
+
   </style>
 </head>
 <body>

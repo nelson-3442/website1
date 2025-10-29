@@ -145,19 +145,52 @@ flex: 1 1 250px ;      /* grow/shrink but keep min width */
   </div>
 </div>
 
+
+
 <script>
 let map;
 
 function myMap() {
+
+  const location = { lat: 4.725872938542997, lng: -74.06200969167806 };
+  const address = "Transversal 55A #137-87, Bogotá, Colombia";
+
+ 
   map = new google.maps.Map(document.getElementById("googleMap"), {
-    center: new google.maps.LatLng(4.723686397456661, -74.05223058477206),
+    center: location,
     zoom: 15,
     draggable: false,
     disableDefaultUI: true,
     zoomControl: true,
     gestureHandling: "cooperative"
   });
+
+
+  const marker = new google.maps.Marker({
+    position: location,
+    map: map,
+  });
+
+  
+  const infoWindow = new google.maps.InfoWindow({
+    content: `
+      <div style="text-align:center; line-height:1.4;">
+        <strong>${address}</strong><br>
+        <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}"
+           target="_blank"
+           style="color:#1a73e8; text-decoration:none; font-weight:bold;">
+           View on Google Maps
+        </a>
+      </div>
+    `
+  });
+
+  
+  marker.addListener("click", () => {
+    infoWindow.open(map, marker);
+  });
 }
+
 
 function panMap(x, y) {
   const scale = Math.pow(2, map.getZoom());
@@ -173,10 +206,8 @@ function panMap(x, y) {
 }
 </script>
 
-<!-- Replace with your own API key -->
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUYLvm49iya5cNEYdPuV6SzhlUjmyA-No&callback=myMap" async defer></script>
-
-
 
 
 

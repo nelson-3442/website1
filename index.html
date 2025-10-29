@@ -149,46 +149,15 @@ flex: 1 1 250px ;      /* grow/shrink but keep min width */
 let map;
 
 function myMap() {
-  const location = { lat: 4.723686397456661, lng: -74.05223058477206 };
-
   map = new google.maps.Map(document.getElementById("googleMap"), {
-    center: location,
+    center: new google.maps.LatLng(4.723686397456661, -74.05223058477206),
     zoom: 15,
     draggable: false,
     disableDefaultUI: true,
     zoomControl: true,
     gestureHandling: "cooperative"
   });
-
-  // ✅ Custom marker
-  const marker = new google.maps.Marker({
-    position: location,
-    map: map,
-  });
-
-  // ✅ Create your own InfoWindow (full control)
-  const infoWindow = new google.maps.InfoWindow({
-    content: `
-      <div style="
-        margin:0;
-        padding:6px 10px;
-        font-size:14px;
-        font-family:Arial, sans-serif;
-        background:white;
-        border-radius:4px;
-        box-shadow:0 1px 4px rgba(0,0,0,0.3);
-      ">
-        📍 Transversal 55A #137-87
-      </div>
-    `,
-  });
-
-  // ✅ Show your InfoWindow on click
-  marker.addListener("click", () => {
-    infoWindow.open(map, marker);
-  });
 }
-
 
 function panMap(x, y) {
   const scale = Math.pow(2, map.getZoom());

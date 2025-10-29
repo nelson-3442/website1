@@ -157,23 +157,33 @@ function myMap() {
     draggable: false,
     disableDefaultUI: true,
     zoomControl: true,
-    gestureHandling: "cooperative",
+    gestureHandling: "cooperative"
   });
 
-  // ✅ Custom marker (no default info window)
+  // ✅ Custom marker
   const marker = new google.maps.Marker({
     position: location,
     map: map,
   });
 
-  // ✅ Optional custom InfoWindow (no margins)
+  // ✅ Create your own InfoWindow (full control)
   const infoWindow = new google.maps.InfoWindow({
-    content: `<div style="margin:0; padding:4px; font-size:14px;">
-      Transversal 55a #137-87
-    </div>`,
+    content: `
+      <div style="
+        margin:0;
+        padding:6px 10px;
+        font-size:14px;
+        font-family:Arial, sans-serif;
+        background:white;
+        border-radius:4px;
+        box-shadow:0 1px 4px rgba(0,0,0,0.3);
+      ">
+        📍 Transversal 55A #137-87
+      </div>
+    `,
   });
 
-  // Show only your clean info window
+  // ✅ Show your InfoWindow on click
   marker.addListener("click", () => {
     infoWindow.open(map, marker);
   });
@@ -208,4 +218,4 @@ function panMap(x, y) {
 
 
 "view on google maps" appears with a margin when click marker, how to 
-remove it?
+change its padding?

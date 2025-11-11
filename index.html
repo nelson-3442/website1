@@ -76,10 +76,12 @@ text-align: justify;
 
 @media screen and (max-width: 768px) {
   .bgimg-2 {
-    background-attachment: scroll;
+    background-attachment: contain;
     background-size: cover;
-    background-position: center center;
+   
     transform: translateZ(0); /* helps avoid resizing flickers */
+
+     min-height: 60vh; /* 80% of viewport height */
   }
 }
 
@@ -126,4 +128,5 @@ text-align: justify;
 
 
 
-
+the background image of .bgimg-2 change size when scroll down on 
+mobile

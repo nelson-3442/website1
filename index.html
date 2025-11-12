@@ -1,1 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.bgimg-1, .bgimg-13-23-32 {
+  background-attachment: fixed;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 78vh;
+  transition: background-position 0.1s ease-out;
+}
+
+.bgimg-1 {
+  background-image: url("images/img1-12-34-56.jpg");
+  background-color: #282E34;
+  background-size: contain;
+}
+
+.bgimg-13-23-32 {
+  background-image: url("images/img2-12-42-52.jpg");
+  background-color: #282E34;
+}
+
+.separador-12-34 {
+  color: #282E34;
+  background-color:#282E34;
+  text-align:center;
+  padding:70px 80px;
+  text-align: justify;
+}
+
+@media screen and (max-width: 650px) {
+  .bgimg-1,
+  .bgimg-13-23-32 {
+    background-attachment: scroll; /* disable native fixed */
+    background-size: cover;
+    background-position: center center;
+    height: 70vh;
+  }
+}
+
+p {
+  padding: 20px;
+  line-height: 1.6;
+}
+</style>
+</head>
+<body>
+
+<div class="bgimg-1"></div>
+<div class="separador-12-34"></div>
+
+<p>
+  Lorem Ipsum is simply dummy text of the printing and typesetting industry. ...
+</p>
+
+<div class="bgimg-13-23-32"></div>
+
+<p>
+  Lorem Ipsum is simply dummy text of the printing and typesetting industry. ...
+</p>
+
+<p>
+  Lorem Ipsum is simply dummy text of the printing and typesetting industry. ...
+</p>
+
+<script>
+// --- Smooth parallax for mobile ---
+(function() {
+  const parallaxEls = document.querySelectorAll('.bgimg-1, .bgimg-13-23-32');
+  let ticking = false;
+
+  function onScroll() {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const scrollY = window.pageYOffset;
+
+        parallaxEls.forEach(el => {
+          const rect = el.getBoundingClientRect();
+          const offsetTop = rect.top + scrollY;
+          const speed = 0.25; // smaller = smoother and subtler
+          const yPos = (scrollY - offsetTop) * speed;
+          el.style.backgroundPosition = `center ${yPos}px`;
+        });
+
+        ticking = false;
+      });
+
+      ticking = true;
+    }
+  }
+
+  if (window.innerWidth <= 650) {
+    window.addEventListener('scroll', onScroll);
+  }
+})();
+</script>
+
+</body>
+</html>
+
 

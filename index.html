@@ -1,22 +1,17 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-/* Reset */
-body, html {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-}
+
+
 
 /* Common styles for parallax sections */
 .bgimg-1, .bgimg-13-23-32 {
   position: relative;
   overflow: hidden;
   height: 78vh;
+  background-color: #282E34; 
 }
 
 /* Image inside the container */
@@ -29,10 +24,12 @@ body, html {
   object-fit: cover;      /* always fill container */
   object-position: center top;
   transition: transform 0.1s ease-out;
+  
 }
 
 /* Separators */
 .separador-12-34 {
+  margin: 0;
   color: #282E34;
   background-color: #282E34;
   text-align: center;
@@ -42,21 +39,19 @@ body, html {
 
 /* Paragraphs */
 p {
+  margin: 0;
   padding: 20px;
   line-height: 1.6;
+  background-color: blue;
 }
 
-/* Mobile adjustments */
-@media screen and (max-width: 650px) {
-  .bgimg-1, .bgimg-13-23-32 {
-    height: 60vh;
- 
 
-   
 
-   
-
+.bgimg-13-23-32 img{
+    height: 105%;
 }
+
+
 </style>
 </head>
 <body>
@@ -121,4 +116,4 @@ p {
 </html>
 
 
-the parallax efect is not showing in chrome when screen is small
+how to add #282E34 background color to bgimg-1 and bgimg-13-23-32

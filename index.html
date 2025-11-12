@@ -47,9 +47,22 @@ p {
 
 
 
-.bgimg-13-23-32 img{
-    height: 105%;
+
+/* For small screens */
+@media screen and (max-width: 650px) {
+  .bgimg-1 img {
+    width: 100%;           /* make image wider than container */
+  
+    left: 0%;            /* center it by shifting left */
+
+    object-fit: fill;   /* stretch image ignoring aspect ratio */
+    height: 60vh;
+  }
+
+
+  
 }
+
 
 
 </style>
@@ -114,5 +127,3 @@ p {
 
 </body>
 </html>
-
-

@@ -11,8 +11,21 @@
   position: relative;
   overflow: hidden;
   height: 78vh;
-  background-color: #282E34; 
+  
 }
+
+.bgimg-1 {
+  
+  background-color: #2aeb19; 
+
+}
+
+
+.bgimg-13-23-32{
+background-color: red;
+
+}
+
 
 /* Image inside the container */
 .bgimg-1 img, .bgimg-13-23-32 img {
@@ -27,15 +40,6 @@
   
 }
 
-/* Separators */
-.separador-12-34 {
-  margin: 0;
-  color: #282E34;
-  background-color: #282E34;
-  text-align: center;
-  padding: 10px 80px;
-  text-align: justify;
-}
 
 /* Paragraphs */
 p {
@@ -50,20 +54,29 @@ p {
 
 /* For small screens */
 @media screen and (max-width: 650px) {
-  .bgimg-1 img {
-    width: 100%;           /* make image wider than container */
-  
-    left: 0%;            /* center it by shifting left */
-
-    object-fit: fill;   /* stretch image ignoring aspect ratio */
-    height: 60vh;
+  .bgimg-1 {
+    height: 78vh; /* keep container height fixed */
   }
 
-
-  
+  .bgimg-1 img {
+    width: 100%;
+    height: 100%;          /* stretch image vertically more than container */
+    left: 0;
+    top: 0;
+    object-fit: fill;      /* stretch ignoring aspect ratio */
+  }
 }
 
 
+/* Separators */
+.separador-12-34 {
+  margin: 0;
+  color: #282E34;
+  background-color: #ff0101;
+  text-align: center;
+  padding: 50px 80px;
+  text-align: justify;
+}
 
 </style>
 </head>
@@ -74,8 +87,8 @@ p {
   <img src="images/img1-12-34-56.jpg" alt="">
 </div>
 
-<div class="separador-12-34"></div>
 
+<div class="separador-12-34"></div>
 
 
 <!-- Parallax section 2 -->
@@ -125,3 +138,6 @@ p {
 
 </body>
 </html>
+
+i want the space between img 1 and img 2 to keep its height
+when scrolling down on mobile but keep all the same

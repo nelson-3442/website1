@@ -1,70 +1,136 @@
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-/* ---------- COMMON BACKGROUND STYLE ---------- */
-.bgimg {
+
+
+.bgimg-1 {
+
+background-image: url("images/img1-12-34-56.jpg");
+
+
+  
+ background-attachment: fixed;
   background-position: center top;
   background-repeat: no-repeat;
-  background-attachment: fixed;
-}
 
-/* ---------- DESKTOP ---------- */
-.bgimg-1 {
-  background-image: url("images/img1-12-34-56.jpg");
-  height: 78vh;
+height: 78vh;
   background-size: 100% 80%;
+
+  
+
 }
 
 .bgimg-2 {
+
+
+
   background-image: url("images/img2-12-42-52.jpg");
-  height: 78vh;
+
+
+  
+  
+ background-attachment: fixed;
+  background-position: center top;
+  background-repeat: no-repeat;
+
+
   background-size: 100% 100%;
+  
 }
 
-/* ---------- SEPARATORS ---------- */
-.separador-12-34 {
-  color: #777;
-  background-color:#282E34;
-  text-align:center;
-  padding:70px 80px;
-  text-align: justify;
+
+
+
+
+.separador-12-34{
+
+color: #777;background-color:#282E34;
+text-align:center;
+padding:70px 80px;
+text-align: justify;
+
 }
 
 .separador-12-33-56 {
-  color: #777;
-  background-color:#0ad603;
-  text-align:center;
-  padding:70px 80px;
-  text-align: justify;
+
+color: #777;background-color:#0ad603;
+text-align:center;
+padding:70px 80px;
+text-align: justify;
+
 }
+
+
+@media screen and (max-width: 650px) {
+  .bgimg-1 {
+    background-size: contain;
+    background-position: center top;
+    background-color: #282E34; /* same as separator */
+    height: auto;              /* allow it to shrink naturally */
+    aspect-ratio: 16 / 9;      /* keeps consistent proportions */
+  }
+
+.bgimg-2 {
+  background-size: contain;
+    background-position: center bottom;
+    background-color: #e61111; /* same as separator */
+    height: auto;              /* allow it to shrink naturally */
+    aspect-ratio: 16 / 9;      /* keeps consistent proportions */
+
+  }
+
+}
+
 
 
 </style>
 </head>
 <body>
 
-<div class="bgimg bgimg-1"></div>
-
-<div class="separador-12-33-56"></div>
-
-<div class="bgimg bgimg-2"></div>
-
-<div class="separador-12-34"></div>
-
-<div class="bgimg bgimg-3">
-  <p>What is Lorem Ipsum?
-  Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p>
+<div class="bgimg-1"
+> 
+ 
 </div>
 
-<div class="separador-12-34"></div>
+<div class="separador-12-33-56"> 
+
+  </div>
+
+<div class="bgimg-2">
+
+</div>
+
+<div class="separador-12-34"> 
+
+  </div>
+
+<div class="bgimg-3">
+ <p>What is Lorem Ipsum?
+Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+</div>
+
+<div class="separador-12-34">
+  </div>
+
 
 <div>
   <p>
-    Lorem Ipsum is simply dummy text of the printing and typesetting industry...
+    What is Lorem Ipsum?
+Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
   </p>
 </div>
 
+
 </body>
 </html>
+
+
+
+
+the image 2 ajust its size when scroll on mobile
+i wat image 2 to behave exactly as image 1

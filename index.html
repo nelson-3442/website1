@@ -14,6 +14,16 @@
   
 }
 
+
+.bgimg-243-23 {
+
+position: relative;
+  overflow: hidden;
+  height: 78vh;
+
+}
+
+
 .bgimg-1 {
   
   background-color: #57564F; 
@@ -29,6 +39,19 @@ background-color: #57564F;
 
 /* Image inside the container */
 .bgimg-1 img, .bgimg-13-23-32 img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /* always fill container */
+  object-position: center top;
+  transition: transform 0.1s ease-out;
+  
+}
+
+
+.bgimg-243-23 img {
   position: absolute;
   top: 0;
   left: 0;
@@ -76,6 +99,17 @@ p {
   object-fit: fill; /* 👈 stretch vertically to fill container */
   }
 
+.bgimg-243-23 img{
+
+ width: 100%;
+    height: 100%;
+    object-fit: contain; /* fit neatly without cropping */
+    object-position: center;
+    background-color: #57564F; /* fallback color fill area if image has space */
+  object-fit: fill; /* 👈 stretch vertically to fill container */
+ 
+
+}
 
 }
 
@@ -109,6 +143,17 @@ p {
 </div>
 
 <div class="separador-12-34"></div>
+
+<div class="bgimg-243-23" >
+  
+  <img src="images/img3-42-12-32.jpg" alt="">
+
+</div>
+
+
+<div class="separador-12-34"></div>
+
+
 <p>
  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
  <br>
@@ -126,7 +171,7 @@ Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots 
 
 <script>
 (function() {
-  const parallaxImgs = document.querySelectorAll('.bgimg-1 img, .bgimg-13-23-32 img');
+  const parallaxImgs = document.querySelectorAll('.bgimg-1 img, .bgimg-13-23-32 img, .bgimg-243-23 img');
   let ticking = false;
 
   function updateParallax() {

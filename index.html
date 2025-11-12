@@ -76,23 +76,17 @@ text-align: justify;
   }
 
 .bgimg-2 {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
- 
+  background-size: contain;
+    background-position: center bottom;
+    background-color: #e61111; /* same as separator */
+    height: auto;              /* allow it to shrink naturally */
+    aspect-ratio: 16 / 9;      /* keeps consistent proportions */
+
   }
 
 }
 
 
-.bgimg-2 img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center -10%; /* moves image up to crop top visually */
-}
 
 </style>
 </head>
@@ -138,4 +132,5 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
 
 
 
-it is not working the blue part still visible
+the image 2 ajust its size when scroll on mobile
+i wat image 2 to behave exactly as image 1

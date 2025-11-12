@@ -8,7 +8,7 @@
 <style>
 
 
-.bgimg-2, .bgimg-3 {
+.bgimg-3 {
 
   
   background-attachment: fixed;
@@ -47,11 +47,9 @@ height: 78vh;
   background-position: center top;
   background-repeat: no-repeat;
 
-height: 78vh;
+
   background-size: 100% 100%;
   
-
-
 }
 
 .bgimg-3 {
@@ -92,16 +90,23 @@ text-align: justify;
     aspect-ratio: 16 / 9;      /* keeps consistent proportions */
   }
 
-  .bgimg-2 {
-  background-size: 100% 100%; 
-    background-position: center top;
-    background-color: #113a63; /* same as separator */
-    height: auto;              /* allow it to shrink naturally */
-    aspect-ratio: 16 / 9;      /* keeps consistent proportions */
+.bgimg-2 {
+    position: relative;
+    overflow: hidden; /* now this will work */
+    height: 0;
+    padding-top: 56.25%; /* 16:9 ratio box */
   }
 
-
-
+  .bgimg-2::before {
+    content: "";
+    position: ;
+    inset: 0;
+    background-image: url("images/img2-12-42-52.jpg");
+    background-size: contain;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-color: #113a63;
+  }
 
 }
 
@@ -144,4 +149,7 @@ text-align: justify;
 </body>
 </html>
 
-how to cut .bgimg-2 blue part below it
+
+
+
+it is not working the blue part still visible

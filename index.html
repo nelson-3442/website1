@@ -38,8 +38,7 @@ position: relative;
   object-fit: cover;      /* always fill container */
   object-position: center top;
   transition: transform 0.1s ease-out;
-  
-}
+ }
 
 
 .bgimg-243-23 img {
@@ -88,6 +87,7 @@ p {
     object-position: center;
     background-color: #57564F; /* fallback color fill area if image has space */
   object-fit: fill; /* 👈 stretch vertically to fill container */
+  margin: 0;
   }
 
 .bgimg-243-23 img{
@@ -98,7 +98,7 @@ p {
     object-position: center;
     background-color: #57564F; /* fallback color fill area if image has space */
   object-fit: fill; /* 👈 stretch vertically to fill container */
- 
+ margin: 0;
 
 }
 
@@ -108,12 +108,27 @@ p {
 /* Separators */
 .separador-12-34 {
   margin: 0;
-  color: #282E34;
+  
   background-color: #57564F;
   text-align: center;
   padding: 50px 80px;
   text-align: justify;
 }
+
+
+.bgimg-13-23-32 img {
+  display: block;          /* removes inline gap */
+  overflow: hidden;        /* keeps inner scroll artifacts out */
+  backface-visibility: hidden; /* fixes tiny 1px white gaps on transforms */
+  transform: translateZ(0);    /* forces GPU rendering for smoothness */
+}
+
+
+.bgimg-13-23-32 {
+  border-color: #57564F;
+}
+
+
 
 </style>
 </head>
@@ -199,5 +214,9 @@ Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots 
 
 </body>
 </html>
+
+
+image 2 is showing a white horizontal line when scroll down on mobile, how to 
+remove it
 
 

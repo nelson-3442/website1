@@ -4,19 +4,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 
-    /*inicio style mobile */
 
-@media screen and (min-width: 800px) {
-    /* styles for screens 800px or wider */
 
-.container-23df-32d{
-    display: none;
+
+
+
+/* Paragraphs */
+
+.para8293{
+
+  margin: 0;
+  padding: 20px;
+  line-height: 1.6;
+ 
+
 }
-}
-
-
-
-
 
 
 /* For small screens */
@@ -59,7 +61,7 @@
   .bgimg2-yh34-3ji img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* fit neatly without cropping */
+    
     object-position: center;
     background-color: #57564F; /* fallback color fill area if image has space */
   object-fit: fill; /* 👈 stretch vertically to fill container */
@@ -95,157 +97,11 @@
 
 
 
-
-
-
-
-.bgimg3-243-23 {
- background-attachment: fixed;
-  background-position: center ;
-  background-repeat: no-repeat;
-
-
-    background-image: url("images/img3-42-12-32.jpg");
-  min-height: 60vh; /* 80% of viewport height */
- background-size: 100% 100%;
-
-
-}
-
-
-.bgimg1-1 {
-
-background-image: url("images/img1-12-34-56.jpg");
-
-
-  
- background-attachment: fixed;
-  background-position: center top;
-  background-repeat: no-repeat;
-
-height: 78vh;
-  background-size: 100% 80%;
-
-  
-
-}
-
-
-
-
-
-
-
-.separador-12-34{
-
-color: #57564F;background-color:#57564F;
-text-align:center;
-padding:50px 80px;
-text-align: justify;
-
-}
-
-/* Paragraphs */
-
-
-
-@media screen and (max-width: 800px) {
-
-  .container1-23{
-    display: none;
-  }
-
-}
-
-
-/*final style mobile */
-
-
-/* inicio style pc*/
-
-.bgimg2-13-23-32 {
-
-  background-attachment: fixed;
-  background-position: center ;
-  background-repeat: no-repeat;
-
-
-  background-image: url("images/img2-12-42-52.jpg");
-  min-height: 60vh; /* 80% of viewport height */
- background-size: 100% 100%;
-
-}
-
-
-.bgimg3-243-23 {
- background-attachment: fixed;
-  background-position: center ;
-  background-repeat: no-repeat;
-
-
-    background-image: url("images/img3-42-12-32.jpg");
-  min-height: 60vh; /* 80% of viewport height */
- background-size: 100% 100%;
-
-
-}
-
-
-.bgimg1-1 {
-
-background-image: url("images/img1-12-34-56.jpg");
-
-
-  
- background-attachment: fixed;
-  background-position: center top;
-  background-repeat: no-repeat;
-
-height: 78vh;
-  background-size: 100% 80%;
-
-  
-
-}
-
-
-
-
-
-
-
-.separador-12-34{
-
-color: #57564F;background-color:#57564F;
-text-align:center;
-padding:50px 80px;
-text-align: justify;
-
-}
-
-/* Paragraphs */
-
-
-
-@media screen and (max-width: 800px) {
-
-  .container1-23{
-    display: none;
-  }
-
-}
-
-
-/* final style pc*/
-
-
 </style>
 </head>
 <body>
 
-<!-- Parallax mobile inicio html -->
 
-<div class="container-23df-32d"> 
 
 <!-- Parallax section 1 -->
 <div class="bgimg1-345-43">
@@ -273,57 +129,24 @@ text-align: justify;
 <div class="separador-12-34"></div>
 
 
+<p class="para8293">
+ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+ <br>
+ <br>
+ It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+<br><br>
+
+Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.
+<br>
+
+</p>
 
 
-</div>
 
-
-
-<!-- Parallax mobile final html -->
-
-
-
-<!-- Parallax pc inicio html -->
-
- <div class="container1-23"> 
-
-<div class="bgimg1-1"
-> 
- 
-</div>
-
-<div class="separador-12-34"
->
-  </div>
-
-  
-<div class="bgimg2-13-23-32">
-  <div class="caption">
-  </div>
-</div>
-
-<div class="separador-12-34"> 
-
-  </div>
-
-<div class="bgimg3-243-23">
- 
-</div>
-
-<div class="separador-12-34">
-  
-</div>
-
-</div>
-
-
-<!-- Parallax pc final html -->
 
 <script>
 (function() {
-  const parallaxImgs = document.querySelectorAll(
-    '.bgimg1-345-43 img, .bgimg2-yh34-3ji img, .bgimg3-hr3j-uj3 img'
-  );
+  const parallaxImgs = document.querySelectorAll('.bgimg1-345-43 img, .bgimg2-yh34-3ji img, .bgimg3-hr3j-uj3 img');
   let ticking = false;
 
   function updateParallax() {
@@ -332,7 +155,7 @@ text-align: justify;
     parallaxImgs.forEach(el => {
       const rect = el.parentElement.getBoundingClientRect();
       const offsetTop = rect.top + scrollY;
-      const speed = 0.25;
+      const speed = 0.25; // smaller = smoother
       const yPos = (scrollY - offsetTop) * speed;
       el.style.transform = `translateY(${yPos}px)`;
     });
@@ -349,30 +172,18 @@ text-align: justify;
   }
 
   if (window.innerWidth <= 800) {
-
-    // --- NEW CODE: run update ONLY after images fully load ---
-    parallaxImgs.forEach(img => {
-      if (img.complete) {
-        updateParallax();  // cached images
-      } else {
-        img.addEventListener("load", updateParallax); // slow network images
-      }
-    });
-
-    // Run once after load (after everything settles)
-    window.addEventListener("load", () => {
-      updateParallax();
-      updateParallax(); // run twice for extra stability
-    });
-
     window.addEventListener('scroll', onScroll);
+    window.addEventListener('load', updateParallax);   // ✅ run once on load
+    updateParallax();                                 // ✅ also run immediately
   }
 })();
 </script>
 
 
 
-
 </body>
 </html>
+
+i want to know the 
+
 

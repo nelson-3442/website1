@@ -2131,11 +2131,23 @@ $(document).ready(function(){
     }
   }
 
-  if (window.innerWidth <= 800) {
-    window.addEventListener('scroll', onScroll);
-    window.addEventListener('load', updateParallax);   // ✅ run once on load
-    updateParallax();                                 // ✅ also run immediately
-  }
+
+if (window.innerWidth <= 800) {
+
+  // Ensure parallax runs ONLY after images are ready
+  parallaxImgs.forEach(img => {
+    if (img.complete) {
+      updateParallax();
+    } else {
+      img.addEventListener("load", updateParallax);
+    }
+  });
+
+  window.addEventListener('scroll', onScroll);
+}
+
+
+
 })();
 </script>
 

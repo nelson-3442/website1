@@ -1599,6 +1599,61 @@ Quisque scelerisque in nunc et porta.
 
 
 
+<!-- inicio javascript version mobil -->
+
+
+
+<script>
+(function() {
+
+  const parallaxImgs = document.querySelectorAll(
+    '.bgimg1-345-43 img, .bgimg2-yh34-3ji img, .bgimg3-hr3j-uj3 img'
+  );
+
+  let ticking = false;
+
+  function updateParallax() {
+    const scrollY = window.pageYOffset;
+
+    parallaxImgs.forEach(el => {
+      const rect = el.parentElement.getBoundingClientRect();
+      const offsetTop = rect.top + scrollY;
+      const speed = 0.25;
+      const yPos = (scrollY - offsetTop) * speed;
+      el.style.transform = `translateY(${yPos}px)`;
+    });
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateParallax();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+
+  if (window.innerWidth <= 800) {
+
+    // FIX: Prevent jump by delaying the first update
+    window.addEventListener('load', () => {
+        window.scrollTo(0, 1); // trick: force browser to think user scrolled a bit
+
+      requestAnimationFrame(() => {
+        updateParallax();  // now everything is positioned correctly
+      });
+    });
+
+    window.addEventListener('scroll', onScroll);
+  }
+
+})();
+</script>
+
+
+
+<!-- final javascript version mobil -->
 
 
 
@@ -1953,65 +2008,7 @@ $(document).ready(function(){
 
 
 
-</div>
 
-
-
-<!-- inicio javascript version mobil -->
-
-
-
-<script>
-(function() {
-
-  const parallaxImgs = document.querySelectorAll(
-    '.bgimg1-345-43 img, .bgimg2-yh34-3ji img, .bgimg3-hr3j-uj3 img'
-  );
-
-  let ticking = false;
-
-  function updateParallax() {
-    const scrollY = window.pageYOffset;
-
-    parallaxImgs.forEach(el => {
-      const rect = el.parentElement.getBoundingClientRect();
-      const offsetTop = rect.top + scrollY;
-      const speed = 0.25;
-      const yPos = (scrollY - offsetTop) * speed;
-      el.style.transform = `translateY(${yPos}px)`;
-    });
-  }
-
-  function onScroll() {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        updateParallax();
-        ticking = false;
-      });
-      ticking = true;
-    }
-  }
-
-  if (window.innerWidth <= 800) {
-
-    // FIX: Prevent jump by delaying the first update
-    window.addEventListener('load', () => {
-        window.scrollTo(0, 1); // trick: force browser to think user scrolled a bit
-
-      requestAnimationFrame(() => {
-        updateParallax();  // now everything is positioned correctly
-      });
-    });
-
-    window.addEventListener('scroll', onScroll);
-  }
-
-})();
-</script>
-
-
-
-<!-- final javascript version mobil -->
 
 
 

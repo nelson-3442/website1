@@ -1112,7 +1112,7 @@ font-size: 30px;
 
 
 
-/*inicio css pc version*/
+
 .bgimg2-13-23-32 {
 
   background-attachment: fixed;
@@ -1121,7 +1121,7 @@ font-size: 30px;
 
 
   background-image: url("images/img2-12-42-52.jpg");
-  min-height: 60vh; /* 80% of viewport height */
+  min-height: 60vh;
  background-size: 100% 100%;
 
 }
@@ -1134,7 +1134,7 @@ font-size: 30px;
 
 
     background-image: url("images/img3-42-12-32.jpg");
-  min-height: 60vh; /* 80% of viewport height */
+  min-height: 60vh; 
  background-size: 100% 100%;
 
 
@@ -1176,7 +1176,7 @@ text-align: justify;
 
 
 @media screen and (max-width: 800px) {
-/* 800px wide or smaller */
+
   .container1-23{
     display: none;
   }
@@ -1184,17 +1184,12 @@ text-align: justify;
 }
 
 
-/*final css pc version*/
 
-
-/* inicio css version movil*/
-
-/* 800px wide or less */
 @media screen and (max-width: 800px) {
 
 
 
-/* Common styles for parallax sections */
+
 .bgimg1-345-43, .bgimg2-yh34-3ji, .bgimg3-hr3j-uj3 {
   position: relative;
   overflow: hidden;
@@ -1203,14 +1198,14 @@ text-align: justify;
 }
 
 
-/* Image inside the container */
+
 .bgimg1-345-43 img, .bgimg2-yh34-3ji img, .bgimg3-hr3j-uj3 img {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;      /* always fill container */
+  object-fit: cover;      
   object-position: center top;
   transition: transform 0.1s ease-out;
  }
@@ -1219,10 +1214,10 @@ text-align: justify;
 
   .bgimg1-345-43 img {
     width: 100%;
-    height: 100%;          /* stretch image vertically more than container */
+    height: 100%;         
     left: 0;
     top: 0;
-    object-fit: fill;      /* stretch ignoring aspect ratio */
+    object-fit: fill;      
   }
 
 
@@ -1231,8 +1226,8 @@ text-align: justify;
     height: 100%;
     
     object-position: center;
-    background-color: #57564F; /* fallback color fill area if image has space */
-  object-fit: fill; /* 👈 stretch vertically to fill container */
+    background-color: #57564F; 
+  object-fit: fill; 
   margin: 0;
   }
 
@@ -1240,10 +1235,10 @@ text-align: justify;
 
  width: 100%;
     height: 100%;
-    object-fit: contain; /* fit neatly without cropping */
+    object-fit: contain; 
     object-position: center;
-    background-color: #57564F; /* fallback color fill area if image has space */
-  object-fit: fill; /* 👈 stretch vertically to fill container */
+    background-color: #57564F; 
+  object-fit: fill; 
  margin: 0;
 
 }
@@ -1251,7 +1246,7 @@ text-align: justify;
 }
 
 
-/* Separators */
+
 .separador-12-34 {
   margin: 0;
   color: #282E34;
@@ -1272,7 +1267,7 @@ text-align: justify;
   }
 }
 
-/* final css version movil*/
+
 
 
 
@@ -2027,7 +2022,6 @@ $(document).ready(function(){
 
 
 
-<!-- inicio javascript version mobil -->
 <script>
 (function() {
   const parallaxImgs = document.querySelectorAll('.bgimg1-345-43 img, .bgimg2-yh34-3ji img, .bgimg3-hr3j-uj3 img');
@@ -2039,7 +2033,7 @@ $(document).ready(function(){
     parallaxImgs.forEach(el => {
       const rect = el.parentElement.getBoundingClientRect();
       const offsetTop = rect.top + scrollY;
-      const speed = 0.25; // smaller = smoother
+      const speed = 0.25; 
       const yPos = (scrollY - offsetTop) * speed;
       el.style.transform = `translateY(${yPos}px)`;
     });
@@ -2057,13 +2051,13 @@ $(document).ready(function(){
 
   if (window.innerWidth <= 800) {
     window.addEventListener('scroll', onScroll);
-    window.addEventListener('load', updateParallax);   // ✅ run once on load
-    updateParallax();                                 // ✅ also run immediately
+    window.addEventListener('load', updateParallax);   
+    updateParallax();                                
   }
 })();
 </script>
 
-<!-- final javascript version mobil -->
+
 
 
 </body>

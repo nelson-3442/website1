@@ -42,7 +42,6 @@ function smoothScrollTo(targetY, duration = 800) {
         if (!startTime) startTime = currentTime;
         const timeElapsed = currentTime - startTime;
 
-        // Ease function
         const t = Math.min(timeElapsed / duration, 1);
         const ease = t < 0.5 ? (4 * t * t * t) : (1 - Math.pow(-2 * t + 2, 3) / 2);
 
@@ -58,21 +57,22 @@ document.querySelectorAll(".scroll-link").forEach(link => {
 
     let pressTimer;
 
-    // Block context menu (long-press menu)
+    // Block context menu (long press menu)
     link.addEventListener("contextmenu", e => e.preventDefault());
 
-    // Detect long-press → still triggers scroll on release
+    // Touch start
     link.addEventListener("touchstart", () => {
         pressTimer = setTimeout(() => {}, 300);
-    });
+    }, { passive: false });
 
+    // Touch end → scroll
     link.addEventListener("touchend", function(e) {
+        e.preventDefault(); // works now because passive:false
         clearTimeout(pressTimer);
-        e.preventDefault();
 
         const target = document.querySelector(this.getAttribute("href"));
-        smoothScrollTo(target.offsetTop, 800); // slow scroll
-    });
+        smoothScrollTo(target.offsetTop, 800);
+    }, { passive: false });
 
     // Desktop click
     link.addEventListener("click", function(e) {

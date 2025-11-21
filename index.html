@@ -1,19 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-#section1 { height: 600px; background: pink; }
-#section2 { height: 600px; background: yellow; }
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-/* Disable long-press menu & highlight */
-.scroll-link {
+<style>
+#section1 {
+ 
+  background-color: pink;
+}
+
+#section2 {
+  height: 600px;
+  background-color: yellow;
+}
+
+/* Disable long-press menu */
+a {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
-.scroll-link:active {
+/* Press highlight */
+a:active {
     background-color: red;
     color: white;
 }
@@ -21,65 +32,69 @@
 </head>
 <body>
 
-<div id="section1">
+<h1>Smooth Scroll</h1>
+
+<div class="main" id="section1">
   <h2>Section 1</h2>
-  <a href="#section2" class="scroll-link">Go to Section 2</a>
+  <p>Click on the link to see the "smooth" scrolling effect.</p>
+  <a href="#section2">Click Me to Smooth Scroll to Section 2 Below</a>
+  <p>Note: Remove the scroll-behavior property to remove smooth scrolling.</p>
+  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+<br><br>
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
 </div>
 
-<div id="section2">
+
+<div class="main" id="section2">
   <h2>Section 2</h2>
-  <a href="#section1" class="scroll-link">Back to Section 1</a>
+  <a href="#section1">Click Me to Smooth Scroll to Section 1 Above</a>
 </div>
 
+
+
+
+
+
+
+
+<!-- Smooth scroll -->
 <script>
-// CUSTOM SLOW SMOOTH SCROLL FUNCTION
-function smoothScrollTo(targetY, duration = 800) {
-    const startY = window.scrollY;
-    const distance = targetY - startY;
-    let startTime = null;
+$(document).ready(function(){
+  $("a").on("click", function(event) {
+    if (this.hash !== "") {
+      event.preventDefault();
+      var hash = this.hash;
 
-    function anim(currentTime) {
-        if (!startTime) startTime = currentTime;
-        const timeElapsed = currentTime - startTime;
-
-        const t = Math.min(timeElapsed / duration, 1);
-        const ease = t < 0.5 ? (4 * t * t * t) : (1 - Math.pow(-2 * t + 2, 3) / 2);
-
-        window.scrollTo(0, startY + distance * ease);
-
-        if (timeElapsed < duration) requestAnimationFrame(anim);
+      $("html, body").animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function() {
+        window.location.hash = hash;
+      });
     }
+  });
+});
+</script>
 
-    requestAnimationFrame(anim);
-}
+<!-- Disable long-press menu + enable long-press navigation -->
+<script>
+document.querySelectorAll("a").forEach(link => {
 
-document.querySelectorAll(".scroll-link").forEach(link => {
+    let touching = false;
 
-    let pressTimer;
-
-    // Block context menu (long press menu)
-    link.addEventListener("contextmenu", e => e.preventDefault());
-
-    // Touch start
     link.addEventListener("touchstart", () => {
-        pressTimer = setTimeout(() => {}, 300);
-    }, { passive: false });
-
-    // Touch end → scroll
-    link.addEventListener("touchend", function(e) {
-        e.preventDefault(); // works now because passive:false
-        clearTimeout(pressTimer);
-
-        const target = document.querySelector(this.getAttribute("href"));
-        smoothScrollTo(target.offsetTop, 800);
-    }, { passive: false });
-
-    // Desktop click
-    link.addEventListener("click", function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute("href"));
-        smoothScrollTo(target.offsetTop, 800);
+        touching = true;
     });
+
+    link.addEventListener("touchend", function() {
+        if (touching) {
+            touching = false;
+            this.click();   // long press + release triggers navigation
+        }
+    });
+
+    // Block Android/iOS long-press context menu
+    link.addEventListener("contextmenu", e => e.preventDefault());
 });
 </script>
 

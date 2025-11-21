@@ -1177,6 +1177,16 @@ line-height: 30px !important;
 
 }
 
+
+
+.link73648 {
+    -webkit-touch-callout: none; /* disable iOS long-press menu */
+    -webkit-user-select: none;   /* iOS */
+    user-select: none;           /* Android */
+}
+
+
+
 </style>
 </head>
 <body>
@@ -1991,6 +2001,13 @@ $(document).ready(function(){
 
 
 
+<script>
+document.querySelectorAll('.link73648').forEach(link => {
+    link.addEventListener("contextmenu", function(e) {
+        e.preventDefault(); // disable long-press menu on Android
+    });
+});
+</script>
 
 
 

@@ -5,13 +5,12 @@
 #section1 { height: 600px; background: pink; }
 #section2 { height: 600px; background: yellow; }
 
-/* Disable long-press and highlight */
+/* Disable long-press menu & highlight */
 .scroll-link {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
 }
 
 .scroll-link:active {
@@ -35,16 +34,30 @@
 <script>
 document.querySelectorAll(".scroll-link").forEach(link => {
 
-    // Disable mobile long-press menu
+    let isLongPress = false;
+    let pressTimer;
+
+    // BLOCK context menu on long press
     link.addEventListener("contextmenu", e => e.preventDefault());
 
-    // Smooth scroll
-    link.addEventListener("click", function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute("href"));
-        target.scrollIntoView({ behavior: "smooth" });
+    link.addEventListener("touchstart", () => {
+        isLongPress = false;
+
+        pressTimer = setTimeout(() => {
+            isLongPress = true;  // long-press detected
+        }, 300); // long-press threshold
     });
 
+    link.addEventListener("touchend", function(e) {
+        clearTimeout(pressTimer);
+
+        e.preventDefault(); // stop native behavior
+
+        const target = document.querySelector(this.getAttribute("href"));
+
+        // If long press OR normal tap → scroll
+        target.scrollIntoView({ behavior: "smooth" });
+    });
 });
 </script>
 

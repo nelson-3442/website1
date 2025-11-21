@@ -14,23 +14,20 @@
   background-color: yellow;
 }
 
+/* Disable long-press menu */
 a {
-    -webkit-touch-callout: none; /* disable iOS long-press menu */
+    -webkit-touch-callout: none;
     -webkit-user-select: none;
     user-select: none;
-}
-
-a:active {
-    background-color: red;
-    color: white;
-}
-
-a {
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
 }
 
-
+/* Press highlight */
+a:active {
+    background-color: red;
+    color: white;
+}
 </style>
 </head>
 <body>
@@ -49,45 +46,45 @@ a {
   <a href="#section1">Click Me to Smooth Scroll to Section 1 Above</a>
 </div>
 
-
+<!-- Smooth scroll -->
 <script>
 $(document).ready(function(){
-  // Add smooth scrolling to all links
-  $("a").on('click', function(event) {
-
-    // Make sure this.hash has a value before overriding default behavior
+  $("a").on("click", function(event) {
     if (this.hash !== "") {
-      // Prevent default anchor click behavior
       event.preventDefault();
-
-      // Store hash
       var hash = this.hash;
 
-      // Using jQuery's animate() method to add smooth page scroll
-      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
-      $('html, body').animate({
+      $("html, body").animate({
         scrollTop: $(hash).offset().top
-      }, 800, function(){
-   
-        // Add hash (#) to URL when done scrolling (default click behavior)
+      }, 800, function() {
         window.location.hash = hash;
       });
-    } // End if
+    }
   });
 });
 </script>
 
-
+<!-- Disable long-press menu + enable long-press navigation -->
 <script>
 document.querySelectorAll("a").forEach(link => {
-    link.addEventListener("contextmenu", function(e) {
-        e.preventDefault(); // block Android long-press menu
+
+    let touching = false;
+
+    link.addEventListener("touchstart", () => {
+        touching = true;
     });
+
+    link.addEventListener("touchend", function() {
+        if (touching) {
+            touching = false;
+            this.click();   // long press + release triggers navigation
+        }
+    });
+
+    // Block Android/iOS long-press context menu
+    link.addEventListener("contextmenu", e => e.preventDefault());
 });
 </script>
 
-
 </body>
 </html>
-
-

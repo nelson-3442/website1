@@ -74,17 +74,25 @@ document.querySelectorAll("a").forEach(link => {
         touching = true;
     });
 
-    link.addEventListener("touchend", function() {
+    link.addEventListener("touchend", function(e) {
         if (touching) {
             touching = false;
-            this.click();   // long press + release triggers navigation
+
+            // Trigger a REAL click so jQuery smooth scroll detects it
+            this.dispatchEvent(new MouseEvent("click", { 
+                bubbles: true,
+                cancelable: true 
+            }));
         }
     });
 
-    // Block Android/iOS long-press context menu
+    // Block long-press context menu
     link.addEventListener("contextmenu", e => e.preventDefault());
 });
 </script>
 
+
 </body>
 </html>
+
+

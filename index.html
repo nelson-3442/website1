@@ -1,21 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
 <style>
-#section1 {
-  height: 600px;
-  background-color: pink;
-}
+#section1 { height: 600px; background: pink; }
+#section2 { height: 600px; background: yellow; }
 
-#section2 {
-  height: 600px;
-  background-color: yellow;
-}
-
-/* Disable long-press menu */
-a {
+/* Disable long-press and highlight */
+.scroll-link {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     user-select: none;
@@ -23,8 +14,7 @@ a {
     touch-action: manipulation;
 }
 
-/* Press highlight */
-a:active {
+.scroll-link:active {
     background-color: red;
     color: white;
 }
@@ -32,67 +22,31 @@ a:active {
 </head>
 <body>
 
-<h1>Smooth Scroll</h1>
-
-<div class="main" id="section1">
+<div id="section1">
   <h2>Section 1</h2>
-  <p>Click on the link to see the "smooth" scrolling effect.</p>
-  <a href="#section2">Click Me to Smooth Scroll to Section 2 Below</a>
-  <p>Note: Remove the scroll-behavior property to remove smooth scrolling.</p>
+  <a href="#section2" class="scroll-link">Go to Section 2</a>
 </div>
 
-<div class="main" id="section2">
+<div id="section2">
   <h2>Section 2</h2>
-  <a href="#section1">Click Me to Smooth Scroll to Section 1 Above</a>
+  <a href="#section1" class="scroll-link">Back to Section 1</a>
 </div>
 
-<!-- Smooth scroll -->
 <script>
-$(document).ready(function(){
-  $("a").on("click", function(event) {
-    if (this.hash !== "") {
-      event.preventDefault();
-      var hash = this.hash;
+document.querySelectorAll(".scroll-link").forEach(link => {
 
-      $("html, body").animate({
-        scrollTop: $(hash).offset().top
-      }, 800, function() {
-        window.location.hash = hash;
-      });
-    }
-  });
-});
-</script>
-
-<!-- Disable long-press menu + enable long-press navigation -->
-<script>
-document.querySelectorAll("a").forEach(link => {
-
-    let touching = false;
-
-    link.addEventListener("touchstart", () => {
-        touching = true;
-    });
-
-    link.addEventListener("touchend", function(e) {
-        if (touching) {
-            touching = false;
-
-            // Trigger a REAL click so jQuery smooth scroll detects it
-            this.dispatchEvent(new MouseEvent("click", { 
-                bubbles: true,
-                cancelable: true 
-            }));
-        }
-    });
-
-    // Block long-press context menu
+    // Disable mobile long-press menu
     link.addEventListener("contextmenu", e => e.preventDefault());
+
+    // Smooth scroll
+    link.addEventListener("click", function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute("href"));
+        target.scrollIntoView({ behavior: "smooth" });
+    });
+
 });
 </script>
-
 
 </body>
 </html>
-
-

@@ -23,6 +23,11 @@ a {
     touch-action: manipulation;
 }
 
+a.active-touch {
+    background-color: red !important;
+    color: white !important;
+}
+
 /* Press highlight */
 a:active {
     background-color: red;
@@ -124,31 +129,54 @@ $(document).ready(function(){
 });
 </script>
 
-<!-- Disable long-press menu + enable long-press navigation -->
+
 <script>
 document.querySelectorAll("a").forEach(link => {
 
-    let touching = false;
+    let isTouching = false;
 
-    link.addEventListener("touchstart", () => {
-        touching = true;
+    link.addEventListener("touchstart", (e) => {
+        isTouching = true;
+        link.classList.add("active-touch");
     });
 
-    link.addEventListener("touchend", function() {
-        if (touching) {
-            touching = false;
-            this.click();   // long press + release triggers navigation
+    link.addEventListener("touchend", (e) => {
+
+        // remove press highlight
+        link.classList.remove("active-touch");
+
+        if (isTouching) {
+            isTouching = false;
+
+            // trigger the normal click (smooth scroll)
+            e.preventDefault();  
+            link.click();
         }
     });
 
-    // Block Android/iOS long-press context menu
-    link.addEventListener("contextmenu", e => e.preventDefault());
+    // finger slides off → highlight should stop
+    link.addEventListener("touchmove", (e) => {
+        const target = document.elementFromPoint(
+            e.touches[0].clientX,
+            e.touches[0].clientY
+        );
+
+        if (!link.contains(target)) {
+            link.classList.remove("active-touch");
+        }
+    });
+
+    link.addEventListener("touchcancel", () => {
+        isTouching = false;
+        link.classList.remove("active-touch");
+    });
+
 });
 </script>
 
+
+
+
 </body>
 </html>
-
-
-
 

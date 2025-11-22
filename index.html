@@ -1,1 +1,194 @@
 
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<style>
+
+
+#section2 {
+ 
+  background-color: yellow;
+}
+
+/* Disable long-press menu */
+
+a.link-231-21rf {
+
+-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+
+}
+
+
+
+a.link-231-21rf.active-touch {
+    background-color: red !important;
+    color: white !important;
+}
+
+
+ /* Press highlight */
+a.link-231-21rf:active {
+    background-color: rgb(7, 253, 118);
+    color: white;
+}
+
+
+
+
+
+
+.header-23-32km{
+
+    font-size: 35px;
+    line-height: 1.5;          /*  spacing between lines */
+margin-left: 15px !important;
+margin-right: 15px;
+text-align: justify;   /* THIS makes the text justified */
+    text-justify: inter-word; /* best spacing method */
+ 
+}
+
+
+
+.header-1232{
+
+    font-size: 35px;
+    margin-left: 15px;
+margin-bottom: -10px !important;
+
+}
+
+.paragraph-23lf-384b
+
+{
+
+font-size: 35px;
+line-height: 1.5;          /*  spacing between lines */
+margin-left: 15px !important;
+margin-right: 15px;
+text-align: justify;   /* THIS makes the text justified */
+    text-justify: inter-word; /* best spacing method */
+
+}
+
+.paragraph-21-42-12 {
+
+font-size: 30px;
+margin-left: 15px;
+background-color: pink;
+
+
+}
+
+.paragraph-23mgj4df-455mk {
+
+margin-left: 15px;
+font-size: 30px;
+margin-top: -10px;
+margin-bottom: -15px;
+
+}
+
+.paragraph-2f5k5g-23mgfl {
+
+font-size: 30px !important;
+margin-left: 15px;
+margin-top: -15px;
+
+}
+
+
+.para-8j534-57j {
+
+margin-left: 15px;
+font-size: 30px;
+margin-top: -10px;
+margin-bottom: -15px;
+
+}
+
+
+</style>
+</head>
+<body>
+
+<h1 class="header-1232" 
+
+>Smooth Scroll</h1>
+<p class="paragraph-21-42-12" id="section1-1232">
+
+Section 1
+
+</p>
+
+<p class="paragraph-23mgj4df-455mk"> 
+  
+  <a href="#section2" 
+  class="link-231-21rf"  >Section 2</a>
+  
+</p>
+
+<p class="paragraph-23lf-384b">
+  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+<br><br>
+  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+<br><br>
+  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+</p>
+
+
+
+<p  class="paragraph-2f5k5g-23mgfl " id="section2">
+ 
+ 
+  Section 2</h2>
+  
+</p>
+
+
+<p class="para-8j534-57j" > 
+<a href="#section1-1232" class="link-231-21rf" >Section 1</a>
+</p>
+
+
+<p class="paragraph-23lf-384b">
+  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+<br><br>
+  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+<br><br>
+  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+</p>
+
+
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+});
+</script>
+
+
+
+
+
+</body>
+</html>
+
+
+

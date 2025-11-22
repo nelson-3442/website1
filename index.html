@@ -123,46 +123,9 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 </script>
 
 
-<script>
-document.querySelectorAll("a").forEach(link => {
-
-    // Prevent Android long-press
-    link.addEventListener("contextmenu", e => e.preventDefault());
-
-    // TOUCH START
-    link.addEventListener("touchstart", e => {
-
-        // Only highlight link-231-21rf
-        if (link.classList.contains("link-231-21rf")) {
-            link.classList.add("active-touch");
-        }
-
-        e.preventDefault();
-    });
-
-    // TOUCH END
-    link.addEventListener("touchend", e => {
-
-        if (link.classList.contains("link-231-21rf")) {
-            link.classList.remove("active-touch");
-        }
-
-        e.preventDefault();
-        link.click();
-    });
-
-    // ❌ NO touchmove event → highlight stays even if finger slides off
-});
-
-
-</script>
 
 
 
 </body>
 </html>
 
- 
-
-i want to disable long press menu only for link-231-21rf
-not all links 

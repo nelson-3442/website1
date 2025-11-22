@@ -183,12 +183,20 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 });
 </script>
 
+<script>
+document.querySelectorAll('.link-231-21rf').forEach(link => {
+
+  // Disable touch menu (long-press) by blocking default actions
+  link.addEventListener("contextmenu", e => e.preventDefault());
+  link.addEventListener("touchstart", e => e.preventDefault());
+  link.addEventListener("touchend", e => e.preventDefault());
+
+});
+</script>
 
 
 
 
 </body>
 </html>
-
-
 

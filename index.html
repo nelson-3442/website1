@@ -129,54 +129,34 @@ $(document).ready(function(){
 });
 </script>
 
-
 <script>
 document.querySelectorAll("a").forEach(link => {
 
-    let isTouching = false;
+    // Prevent Android link menu
+    link.addEventListener("contextmenu", (e) => {
+        e.preventDefault();
+        return false;
+    });
 
+    // Prevent iOS text selection + link preview menu
     link.addEventListener("touchstart", (e) => {
-        isTouching = true;
-        link.classList.add("active-touch");
+        link.style.userSelect = "none";
+        link.style.webkitUserSelect = "none";
+
+        // Stop iOS long-press link preview
+        e.preventDefault(); 
     });
 
+    // Prevent iOS from re-showing preview when holding
     link.addEventListener("touchend", (e) => {
-
-        // remove press highlight
-        link.classList.remove("active-touch");
-
-        if (isTouching) {
-            isTouching = false;
-
-            // trigger the normal click (smooth scroll)
-            e.preventDefault();  
-            link.click();
-        }
+        e.preventDefault();
+        link.click(); // keep your smooth scroll working
     });
-
-    // finger slides off → highlight should stop
-    link.addEventListener("touchmove", (e) => {
-        const target = document.elementFromPoint(
-            e.touches[0].clientX,
-            e.touches[0].clientY
-        );
-
-        if (!link.contains(target)) {
-            link.classList.remove("active-touch");
-        }
-    });
-
-    link.addEventListener("touchcancel", () => {
-        isTouching = false;
-        link.classList.remove("active-touch");
-    });
-
 });
 </script>
-
-
 
 
 </body>
 </html>
 
+disable link menu when long touch the link

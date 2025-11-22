@@ -132,31 +132,41 @@ $(document).ready(function(){
 <script>
 document.querySelectorAll("a").forEach(link => {
 
-    // Prevent Android link menu
+    // Prevent Android context menu
     link.addEventListener("contextmenu", (e) => {
         e.preventDefault();
         return false;
     });
 
-    // Prevent iOS text selection + link preview menu
+    // TOUCH START → add highlight + block iOS preview
     link.addEventListener("touchstart", (e) => {
+        // highlight
+        link.classList.add("active-touch");
+
+        // prevent iOS preview + selection
         link.style.userSelect = "none";
         link.style.webkitUserSelect = "none";
-
-        // Stop iOS long-press link preview
-        e.preventDefault(); 
-    });
-
-    // Prevent iOS from re-showing preview when holding
-    link.addEventListener("touchend", (e) => {
         e.preventDefault();
-        link.click(); // keep your smooth scroll working
     });
+
+    // TOUCH END → remove highlight + trigger click
+    link.addEventListener("touchend", (e) => {
+        link.classList.remove("active-touch");
+        e.preventDefault();
+        link.click();
+    });
+
+    // TOUCH MOVE → if finger slides away, remove highlight
+    link.addEventListener("touchmove", () => {
+        link.classList.remove("active-touch");
+    });
+
 });
 </script>
+
 
 
 </body>
 </html>
 
-disable link menu when long touch the link
+keep link highlight when touching it on mobile
